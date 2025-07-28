@@ -1,0 +1,44 @@
+{
+  "name": "email-notify",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "email",
+    "notifications",
+    "gmail",
+    "smtp",
+    "backend",
+    "typescript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "description": "A backend-focused npm package for sending email notifications with support for Gmail SMTP, rate limiting, and extensible providers.",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "nodemailer": "^7.0.5",
+    "p-queue": "^8.0.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.1.0",
+    "@types/nodemailer": "^6.4.17",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.5.0",
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
