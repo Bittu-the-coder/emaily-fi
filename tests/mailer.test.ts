@@ -30,9 +30,9 @@ const config: Config = {
   // Using new Gmail SMTP format
   smtpHost: "smtp.gmail.com",
   smtpPort: 587,
-  emailUser: "Bittuprajapati2271@gmail.com",
-  emailPass: "efqotncjhzgbewgk",
-  emailFrom: "Test Sender <Bittuprajapati2271@gmail.com>",
+  emailUser: "<username>@gmail.com",
+  emailPass: "fakepassword",
+  emailFrom: "Test Sender <<username>@gmail.com>",
   enableQueue: false,
   rateLimit: {
     maxPerSecond: 2,
@@ -44,9 +44,9 @@ const config: Config = {
 };
 
 const users: User[] = [
-  { name: "Alice", email: "bittuatwork169@gmail.com" },
-  { name: "Bob", email: "mebittup65535@gmail.com" },
-  { name: "Charlie", email: "2024021321@mmmut.ac.in" },
+  { name: "Alice", email: "test@gmail.com" },
+  { name: "Bob", email: "test2@gmail.com" },
+  { name: "Charlie", email: "test3@mmmut.ac.in" },
 ];
 
 const message: MessageInput = {
