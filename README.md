@@ -1,4 +1,4 @@
-# Email-Notify
+# emaily-fi
 
 A powerful, production-ready TypeScript package for sending email notifications with enterprise-grade features including Gmail SMTP, rate limiting, retry mechanisms, queue system, and extensible provider architecture.
 
@@ -6,9 +6,9 @@ A powerful, production-ready TypeScript package for sending email notifications 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
-## 🌟 Why Email-Notify?
+## 🌟 Why emaily-fi?
 
-**Email-Notify** is designed for developers who need a reliable, scalable email solution without the complexity. Whether you're building a startup MVP or an enterprise application, this package provides the tools you need for professional email delivery.
+**emaily-fi** is designed for developers who need a reliable, scalable email solution without the complexity. Whether you're building a startup MVP or an enterprise application, this package provides the tools you need for professional email delivery.
 
 ### ✨ Key Benefits
 
@@ -455,7 +455,7 @@ We welcome contributions! Here's how to get started:
 
 ```bash
 # Clone and setup
-git clone https://github.com/yourusername/emaily-fi
+git clone https://github.com/Bittu-the-coder/emaily-fi
 cd emaily-fi
 npm install
 
@@ -498,16 +498,16 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
 
 ## 📝 License
 
-MIT © [Your Name](https://github.com/yourusername)
+MIT © [Bittu-the-coder](https://github.com/Bittu-the-coder)
 
 ## 🆘 Support & Community
 
 ### Get Help
 
 - **📖 Documentation** - Check our comprehensive docs
-- **🐛 Issues** - [GitHub Issues](https://github.com/yourusername/emaily-fi/issues)
-- **💬 Discussions** - [GitHub Discussions](https://github.com/yourusername/emaily-fi/discussions)
-- **📧 Email** - support@yourdomain.com
+- **🐛 Issues** - [GitHub Issues](https://github.com/Bittu-the-coder/emaily-fi/issues)
+- **💬 Discussions** - [GitHub Discussions](https://github.com/Bittu-the-coder/emaily-fi/discussions)
+- **📧 Email** - [support@emaily-fi.com](mailto:support@emaily-fi.com)
 
 ### Stay Updated
 
@@ -536,6 +536,6 @@ MIT © [Your Name](https://github.com/yourusername)
 
 **Built with ❤️ for the Node.js community**
 
-[⭐ Star on GitHub](https://github.com/yourusername/emaily-fi) | [📦 View on NPM](https://www.npmjs.com/package/emaily-fi) | [📖 Read the Docs](./docs/API.md)
+[⭐ Star on GitHub](https://github.com/Bittu-the-coder/emaily-fi) | [📦 View on NPM](https://www.npmjs.com/package/emaily-fi) | [📖 Read the Docs](./docs/API.md)
 
 </div>

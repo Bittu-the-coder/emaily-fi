@@ -2,7 +2,7 @@ import { EmailNotifier } from "./src";
 import "dotenv/config";
 
 async function demo() {
-  console.log("🚀 Email-Notify Package Demo");
+  console.log("🚀 emaily-fi Package Demo");
   console.log("============================\n");
 
   // Configuration with environment variables (recommended)
@@ -40,13 +40,13 @@ async function demo() {
 
     // Sample message
     const message = {
-      subject: "🎉 Welcome to Email-Notify Package!",
-      body: "Hello! This is a demo email from the Email-Notify package. Thank you for trying our service!",
+      subject: "🎉 Welcome to emaily-fi Package!",
+      body: "Hello! This is a demo email from the emaily-fi package. Thank you for trying our service!",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: #4CAF50;">🎉 Welcome to Email-Notify!</h1>
+          <h1 style="color: #4CAF50;">🎉 Welcome to emaily-fi!</h1>
           <p>Hello there!</p>
-          <p>This is a test email from the <strong>Email-Notify</strong> package.</p>
+          <p>This is a test email from the <strong>emaily-fi</strong> package.</p>
           <p>Features demonstrated:</p>
           <ul>
             <li>✅ Gmail SMTP configuration</li>
@@ -57,7 +57,7 @@ async function demo() {
           <p>Thank you for using our service!</p>
           <hr>
           <p style="color: #666; font-size: 12px;">
-            Sent via Email-Notify Package Demo<br>
+            Sent via emaily-fi Package Demo<br>
             ${new Date().toISOString()}
           </p>
         </div>
@@ -71,7 +71,7 @@ async function demo() {
     try {
       const singleResult = await notifier.sendToOne(users[2], {
         ...message,
-        subject: "📧 Single Email Test - Email-Notify Package",
+        subject: "📧 Single Email Test - emaily-fi Package",
       });
 
       if (singleResult.success) {
@@ -91,7 +91,7 @@ async function demo() {
     try {
       const batchResult = await notifier.sendToAll(users, {
         ...message,
-        subject: "� Batch Email Test - Email-Notify Package",
+        subject: "📬 Batch Email Test - emaily-fi Package",
       });
 
       console.log(`✅ Batch send completed:`);
@@ -117,7 +117,7 @@ async function demo() {
         users,
         {
           ...message,
-          subject: "🎲 Random Selection Email - Email-Notify Package",
+          subject: "🎲 Random Selection Email - emaily-fi Package",
         },
         2
       );
@@ -144,7 +144,7 @@ async function demo() {
         users,
         {
           ...message,
-          subject: "🔍 Filtered Email - Email-Notify Package",
+          subject: "🔍 Filtered Email - emaily-fi Package",
         },
         (user) => user.name.startsWith("A") || user.name.startsWith("B")
       );
@@ -165,7 +165,7 @@ async function demo() {
     // Demo 5: Rich message with attachments
     console.log("\n5️⃣ Demonstrating rich message features...");
     const richMessage = {
-      subject: "💎 Rich Email Features - Email-Notify Package",
+      subject: "💎 Rich Email Features - emaily-fi Package",
       body: "This email demonstrates rich features like CC, BCC, and attachments.",
       html: `
         <h2>Rich Email Features Demo</h2>
@@ -182,7 +182,7 @@ async function demo() {
       attachments: [
         {
           filename: "demo.txt",
-          content: "This is a demo attachment from Email-Notify package!",
+          content: "This is a demo attachment from emaily-fi package!",
           contentType: "text/plain",
         },
       ],
@@ -223,7 +223,7 @@ async function demo() {
     console.log("   • Custom logging support");
     console.log("   • Legacy configuration format support");
 
-    console.log("\n🎉 Email-Notify package demonstrations completed!");
+    console.log("\n🎉 emaily-fi package demonstrations completed!");
     console.log("\n💡 Check your email inboxes for the test messages!");
 
     console.log("\n📋 To use with environment variables, create .env file:");

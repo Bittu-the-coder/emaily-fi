@@ -1,4 +1,4 @@
-# Contributing to Email-Notify
+# Contributing to emaily-fi
 
 We welcome contributions to emaily-fi! This document provides guidelines for contributing to the project.
 
@@ -16,7 +16,7 @@ We welcome contributions to emaily-fi! This document provides guidelines for con
 1. **Fork and Clone**
 
    ```bash
-   git clone https://github.com/yourusername/emaily-fi.git
+   git clone https://github.com/Bittu-the-coder/emaily-fi.git
    cd emaily-fi
    ```
 
@@ -189,7 +189,7 @@ describe("Email Integration", () => {
 
 ### 🐛 Bug Fixes
 
-- Check [GitHub Issues](https://github.com/yourusername/emaily-fi/issues)
+- Check [GitHub Issues](https://github.com/Bittu-the-coder/emaily-fi/issues)
 - Look for `good-first-issue` label
 - Reproduce bug before fixing
 - Add regression tests

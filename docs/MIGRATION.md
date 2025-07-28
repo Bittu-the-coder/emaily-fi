@@ -110,7 +110,7 @@ await transporter.sendMail({
 });
 ```
 
-**Email-Notify:**
+**emaily-fi:**
 
 ```typescript
 import { EmailNotifier } from "emaily-fi";
@@ -140,7 +140,7 @@ emailjs.send("service_id", "template_id", {
 });
 ```
 
-**Email-Notify:**
+**emaily-fi:**
 
 ```typescript
 import { EmailNotifier } from "emaily-fi";
@@ -173,7 +173,7 @@ await sgMail.send({
 });
 ```
 
-**Email-Notify (when SendGrid provider is available):**
+**emaily-fi (when SendGrid provider is available):**
 
 ```typescript
 import { EmailNotifier } from "emaily-fi";

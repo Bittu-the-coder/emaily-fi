@@ -241,8 +241,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Links
 
-- [GitHub Repository](https://github.com/yourusername/emaily-fi)
+- [GitHub Repository](https://github.com/Bittu-the-coder/emaily-fi)
 - [npm Package](https://www.npmjs.com/package/emaily-fi)
 - [Documentation](./docs/)
-- [Issues](https://github.com/yourusername/emaily-fi/issues)
-- [Discussions](https://github.com/yourusername/emaily-fi/discussions)
+- [Issues](https://github.com/Bittu-the-coder/emaily-fi/issues)
+- [Discussions](https://github.com/Bittu-the-coder/emaily-fi/discussions)

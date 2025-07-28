@@ -289,7 +289,7 @@ emailPass: "your-app-password"; // ✅
    ```typescript
    const message = {
      subject: "Large File Available",
-     body: "Download your file from: https://yourdomain.com/download/file123",
+     body: "Download your file from: https://example.com/download/file123",
      // Instead of large attachment
    };
    ```

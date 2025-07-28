@@ -1,5 +1,5 @@
 /**
- * Email-Notify Example
+ * emaily-fi Example
  *
  * This example demonstrates the basic usage of the emaily-fi package
  * for sending emails with Gmail SMTP.
@@ -35,13 +35,13 @@ async function main() {
 
     // Sample message
     const message = {
-      subject: "Welcome to Email-Notify! 🎉",
-      body: `Hello!\n\nWelcome to our email notification service. This is a test message sent using the emaily-fi package.\n\nBest regards,\nThe Email-Notify Team`,
+      subject: "Welcome to emaily-fi! 🎉",
+      body: `Hello!\n\nWelcome to our email notification service. This is a test message sent using the emaily-fi package.\n\nBest regards,\nThe emaily-fi Team`,
       html: `
-        <h1>Welcome to Email-Notify! 🎉</h1>
+        <h1>Welcome to emaily-fi! 🎉</h1>
         <p>Hello!</p>
         <p>Welcome to our email notification service. This is a test message sent using the emaily-fi package.</p>
-        <p>Best regards,<br><strong>The Email-Notify Team</strong></p>
+        <p>Best regards,<br><strong>The emaily-fi Team</strong></p>
       `,
     };
 
