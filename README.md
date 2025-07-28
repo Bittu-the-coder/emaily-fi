@@ -19,6 +19,8 @@ A powerful, production-ready TypeScript package for sending email notifications 
 - **📈 Scalable** - From single emails to bulk campaigns with filtering and targeting
 - **🎯 Flexible** - Multiple send modes for different use cases
 
+![Emaily-fi vs normal](./docs/images/comparison.png)
+
 ## 🚀 Features
 
 ### Core Features
