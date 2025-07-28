@@ -1,10 +1,3 @@
-/**
- * emaily-fi Example
- *
- * This example demonstrates the basic usage of the emaily-fi package
- * for sending emails with Gmail SMTP.
- */
-
 import { EmailNotifier } from "./src";
 import { createValidatedConfigFromEnv } from "./src/env-config";
 import "dotenv/config";

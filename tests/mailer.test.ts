@@ -32,7 +32,7 @@ const config: Config = {
   smtpPort: 587,
   emailUser: "<username>@gmail.com",
   emailPass: "fakepassword",
-  emailFrom: "Test Sender <<username>@gmail.com>",
+  emailFrom: "Test Sender <username>@gmail.com>",
   enableQueue: false,
   rateLimit: {
     maxPerSecond: 2,

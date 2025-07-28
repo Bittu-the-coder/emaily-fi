@@ -8,8 +8,8 @@ import {
   UserSchema,
   MessageInputSchema,
   ConfigSchema,
-  ValidatedUser,
-  ValidatedMessageInput,
+  // ValidatedUser,
+  // ValidatedMessageInput,
   ValidatedConfig,
 } from "./types";
 import { ProviderFactory, EmailProvider } from "./providers";
