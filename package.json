@@ -1,5 +1,5 @@
 {
-  "name": "email-notify",
+  "name": "emaily-fi",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,9 +19,26 @@
     "backend",
     "typescript"
   ],
-  "author": "Your Name",
+  "author": "bittu-the-coder",
   "license": "MIT",
-  "description": "A backend-focused npm package for sending email notifications with support for Gmail SMTP, rate limiting, and extensible providers.",
+  "description": "A powerful, production-ready TypeScript package for sending email notifications with Gmail SMTP, rate limiting, retry mechanisms, and queue system.",
+  "homepage": "https://github.com/bittu-the-coder/emaily-fi#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bittu-the-coder/emaily-fi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bittu-the-coder/emaily-fi/issues"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "CHANGELOG.md",
+    "docs/**/*"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "dotenv": "^17.2.1",
     "nodemailer": "^7.0.5",

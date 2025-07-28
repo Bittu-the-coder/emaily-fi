@@ -1,16 +1,14 @@
 import { EmailNotifier } from "./src";
+import "dotenv/config";
 
 async function demo() {
   console.log("🚀 Email-Notify Package Demo");
   console.log("============================\n");
 
-  // Configuration with the new Gmail SMTP format
+  // Configuration with environment variables (recommended)
   const config = {
-    smtpHost: "smtp.gmail.com",
-    smtpPort: 587,
-    emailUser: "bittuprajapati2271@gmail.com",
-    emailPass: "efqotncjhzgbewgk",
-    emailFrom: "Demo Company <bittuprajapati2271@gmail.com>",
+    emailUser: process.env.EMAIL_USER || "your-email@gmail.com",
+    emailPass: process.env.EMAIL_PASS || "your-app-password",
     rateLimit: {
       maxPerSecond: 1,
     },
@@ -24,9 +22,7 @@ async function demo() {
   };
 
   try {
-    console.log(
-      "✅ Creating EmailNotifier with new Gmail SMTP configuration..."
-    );
+    console.log("✅ Creating EmailNotifier with environment configuration...");
     const notifier = new EmailNotifier(config);
 
     console.log("✅ Validating configuration...");
@@ -36,17 +32,16 @@ async function demo() {
     await notifier.initialize();
     console.log("✅ EmailNotifier initialized successfully!");
 
-    // Sample users for testing
+    // Sample users for testing (use your own email addresses)
     const users = [
-      { name: "Alice Johnson", email: "2024021321@mmmut.ac.in" },
-      { name: "Bob Smith", email: "bittuatwork169@gmail.com" },
-      { name: "Charlie Brown", email: "bittuprajapati2271@gmail.com" },
+      { name: "Demo User 1", email: "user1@example.com" },
+      { name: "Demo User 2", email: "user2@example.com" },
     ];
 
     // Sample message
     const message = {
       subject: "🎉 Welcome to Email-Notify Package!",
-      body: "Hello! This is a test email from the Email-Notify package. Thank you for using our service!",
+      body: "Hello! This is a demo email from the Email-Notify package. Thank you for trying our service!",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h1 style="color: #4CAF50;">🎉 Welcome to Email-Notify!</h1>

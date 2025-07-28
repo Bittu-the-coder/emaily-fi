@@ -1,282 +1,541 @@
 # Email-Notify
 
-A powerful, backend-focused npm package for sending email notifications with support for Gmail SMTP, rate limiting, retry mechanisms, and extensible providers.
+A powerful, production-ready TypeScript package for sending email notifications with enterprise-grade features including Gmail SMTP, rate limiting, retry mechanisms, queue system, and extensible provider architecture.
 
-## Features
+[![npm version](https://badge.fury.io/js/emaily-fi.svg)](https://badge.fury.io/js/emaily-fi)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
-- ✅ **Multiple Send Modes**: Send to all users, single user, random subset, or filtered users
-- ✅ **Provider Support**: Gmail SMTP (with extensible architecture for future providers)
-- ✅ **Rate Limiting**: Built-in rate limiting to respect email provider limits
+## 🌟 Why Email-Notify?
+
+**Email-Notify** is designed for developers who need a reliable, scalable email solution without the complexity. Whether you're building a startup MVP or an enterprise application, this package provides the tools you need for professional email delivery.
+
+### ✨ Key Benefits
+
+- **🚀 Production Ready** - Battle-tested with comprehensive error handling and retry logic
+- **⚡ High Performance** - Async queue system for handling thousands of emails
+- **🛡️ Enterprise Grade** - Rate limiting, retry mechanisms, and security best practices
+- **🔧 Developer Friendly** - Full TypeScript support, intuitive API, and extensive documentation
+- **📈 Scalable** - From single emails to bulk campaigns with filtering and targeting
+- **🎯 Flexible** - Multiple send modes for different use cases
+
+## 🚀 Features
+
+### Core Features
+
+- ✅ **Multiple Send Modes**: Send to all, single user, random subset, or filtered users
+- ✅ **Gmail SMTP Support**: Easy setup with Gmail App Passwords
+- ✅ **Smart Rate Limiting**: Per-second, per-minute, and per-hour controls
 - ✅ **Retry Mechanisms**: Automatic retries with exponential backoff
 - ✅ **Queue System**: Optional async queue for high-volume dispatches
-- ✅ **Input Validation**: Structured validation using Zod
-- ✅ **TypeScript**: Full TypeScript support with type safety
-- ✅ **Rich Messages**: Support for HTML, CC/BCC, and attachments
-- ✅ **Logging**: Custom logging support for monitoring
-- ✅ **Comprehensive Testing**: Complete test suite with mocked environments
+- ✅ **TypeScript First**: Complete type safety and IntelliSense support
 
-## Installation
+### Advanced Features
+
+- ✅ **Rich Messages**: HTML, CC/BCC, attachments, and custom headers
+- ✅ **Input Validation**: Zod-powered validation for reliability
+- ✅ **Environment Config**: Secure configuration via environment variables
+- ✅ **Custom Logging**: Pluggable logging for monitoring and debugging
+- ✅ **Extensible Architecture**: Provider pattern for future email services
+- ✅ **Legacy Support**: Backward compatibility with existing configurations
+
+## 📦 Installation
 
 ```bash
-npm install email-notify
+npm install emaily-fi
 ```
 
-## Quick Start
+```bash
+# With Yarn
+yarn add emaily-fi
+
+# With pnpm
+pnpm add emaily-fi
+```
+
+## 🚀 Quick Start
+
+### 1. Basic Setup
 
 ```typescript
-import { EmailNotifier } from "email-notify";
+import { EmailNotifier } from "emaily-fi";
 
 const notifier = new EmailNotifier({
-  senderEmail: "your-email@gmail.com",
-  senderPassword: "your-app-password", // Use App Password for Gmail
-  rateLimit: {
-    maxPerSecond: 1,
-  },
-  retryOptions: {
-    maxRetries: 3,
-    retryDelay: 1000,
-  },
+  emailUser: "your-email@gmail.com",
+  emailPass: "your-app-password", // Gmail App Password
+  rateLimit: { maxPerSecond: 1 },
 });
 
 await notifier.initialize();
+```
 
+### 2. Send Your First Email
+
+```typescript
+// Single user
+const user = { name: "Alice", email: "alice@example.com" };
+const message = {
+  subject: "Welcome to our service!",
+  body: "Thank you for joining us.",
+  html: "<h1>Welcome!</h1><p>Thank you for joining us.</p>",
+};
+
+const result = await notifier.sendToOne(user, message);
+console.log(result.success ? "✅ Email sent!" : `❌ Failed: ${result.error}`);
+```
+
+### 3. Bulk Email Sending
+
+```typescript
 const users = [
   { name: "Alice", email: "alice@example.com" },
   { name: "Bob", email: "bob@example.com" },
+  { name: "Charlie", email: "charlie@example.com" },
 ];
 
-const message = {
-  subject: "Hello!",
-  body: "This is a test message.",
-  html: "<h1>Hello!</h1><p>This is a test message.</p>",
-};
-
 // Send to all users
-const result = await notifier.sendToAll(users, message);
-console.log(`Sent: ${result.totalSent}, Failed: ${result.totalFailed}`);
+const bulkResult = await notifier.sendToAll(users, message);
+console.log(
+  `✅ Sent: ${bulkResult.totalSent}, ❌ Failed: ${bulkResult.totalFailed}`
+);
+
+// Send to random subset (A/B testing)
+const testResult = await notifier.sendRandom(users, message, 2);
+
+// Send to filtered users (targeting)
+const premiumResult = await notifier.sendFiltered(
+  users,
+  message,
+  (user) => user.isPremium === true
+);
 ```
 
-## Configuration
-
-### Basic Configuration
+### 4. Environment-Based Configuration
 
 ```typescript
-interface Config {
-  senderEmail: string; // Your Gmail address
-  senderPassword: string; // Gmail App Password
-  provider?: "gmail"; // Email provider (gmail only for now)
-  rateLimit?: RateLimitConfig; // Rate limiting options
-  retryOptions?: RetryConfig; // Retry configuration
-  enableQueue?: boolean; // Enable async queue
-  logger?: LoggerFunction; // Custom logging function
-}
+// .env file
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+MAX_EMAILS_PER_SECOND=2
+MAX_EMAILS_PER_MINUTE=100
+ENABLE_QUEUE=true
+
+// Your code
+import { EmailNotifier, createValidatedConfigFromEnv } from "emaily-fi";
+
+const notifier = new EmailNotifier(createValidatedConfigFromEnv());
+await notifier.initialize();
 ```
 
-### Rate Limiting
+## 📋 Real-World Examples
+
+### Newsletter System
 
 ```typescript
-const config = {
-  // ... other config
-  rateLimit: {
-    maxPerSecond: 1, // Max 1 email per second
-    maxPerMinute: 50, // Max 50 emails per minute
-    maxPerHour: 500, // Max 500 emails per hour
-  },
-};
-```
+class NewsletterService {
+  private notifier: EmailNotifier;
 
-### Retry Configuration
-
-```typescript
-const config = {
-  // ... other config
-  retryOptions: {
-    maxRetries: 3, // Retry up to 3 times
-    retryDelay: 1000, // Initial delay of 1 second (exponential backoff)
-  },
-};
-```
-
-### Queue System
-
-```typescript
-const config = {
-  // ... other config
-  enableQueue: true, // Enable async processing queue
-  rateLimit: {
-    maxPerSecond: 2, // Queue will respect rate limits
-  },
-};
-```
-
-## Usage Examples
-
-### Send to Single User
-
-```typescript
-const result = await notifier.sendToOne(
-  { name: "Alice", email: "alice@example.com" },
-  {
-    subject: "Personal Message",
-    body: "Hello Alice!",
-    html: "<h1>Hello Alice!</h1>",
+  constructor() {
+    this.notifier = new EmailNotifier({
+      emailUser: process.env.EMAIL_USER!,
+      emailPass: process.env.EMAIL_PASS!,
+      enableQueue: true,
+      rateLimit: { maxPerSecond: 1, maxPerMinute: 50 },
+      logger: (msg, level) => console.log(`[${level}] ${msg}`),
+    });
   }
-);
 
-if (result.success) {
-  console.log(`Email sent successfully: ${result.messageId}`);
-} else {
-  console.error(`Failed to send: ${result.error}`);
+  async sendWeeklyNewsletter(subscribers: User[], content: string) {
+    return await this.notifier.sendToAll(subscribers, {
+      subject: "Weekly Newsletter",
+      body: content,
+      html: `<div style="font-family: Arial;">${content}</div>`,
+    });
+  }
+
+  async sendTargetedCampaign(subscribers: User[], campaign: Campaign) {
+    // Send only to premium users
+    return await this.notifier.sendFiltered(
+      subscribers,
+      campaign.message,
+      (user) => user.subscription === "premium"
+    );
+  }
 }
 ```
 
-### Send to Random Users
+### Order Notifications
 
 ```typescript
-// Send to 3 random users from the list
-const result = await notifier.sendRandom(users, message, 3);
-console.log(`Randomly sent to ${result.totalSent} users`);
+class OrderService {
+  private notifier: EmailNotifier;
+
+  async sendOrderConfirmation(customer: User, order: Order) {
+    const invoice = await this.generateInvoice(order);
+
+    return await this.notifier.sendToOne(customer, {
+      subject: `Order Confirmation #${order.id}`,
+      body: `Your order #${order.id} has been confirmed.`,
+      html: this.getOrderEmailTemplate(order),
+      attachments: [
+        {
+          filename: `invoice-${order.id}.pdf`,
+          content: invoice,
+          contentType: "application/pdf",
+        },
+      ],
+    });
+  }
+}
 ```
 
-### Send to Filtered Users
+### Express.js Integration
 
 ```typescript
-// Send only to users whose names start with 'A'
-const result = await notifier.sendFiltered(users, message, (user) =>
-  user.name.startsWith("A")
-);
+import express from "express";
+import { EmailNotifier } from "emaily-fi";
+
+const app = express();
+const notifier = new EmailNotifier(/* config */);
+
+app.post("/api/send-notification", async (req, res) => {
+  try {
+    const { users, message } = req.body;
+    const result = await notifier.sendToAll(users, message);
+
+    res.json({
+      success: true,
+      sent: result.totalSent,
+      failed: result.totalFailed,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 ```
 
-### Rich Messages with Attachments
+## ⚙️ Configuration
 
-```typescript
-const richMessage = {
-  subject: "Report Attached",
-  body: "Please find the report attached.",
-  html: "<h1>Monthly Report</h1><p>Please find the report attached.</p>",
-  cc: ["supervisor@company.com"],
-  bcc: ["archive@company.com"],
-  attachments: [
-    {
-      filename: "report.pdf",
-      content: fs.readFileSync("./report.pdf"),
-      contentType: "application/pdf",
-    },
-  ],
-};
-
-await notifier.sendToOne(user, richMessage);
-```
-
-### Custom Logging
+### Complete Configuration Options
 
 ```typescript
 const notifier = new EmailNotifier({
-  // ... other config
+  // SMTP Settings (Required)
+  emailUser: "your-email@gmail.com",
+  emailPass: "your-app-password",
+
+  // Optional SMTP Settings
+  emailFrom: "Your Company <your-email@gmail.com>",
+  smtpHost: "smtp.gmail.com",
+  smtpPort: 587,
+  smtpSecure: false,
+
+  // Rate Limiting
+  rateLimit: {
+    maxPerSecond: 1, // Max emails per second
+    maxPerMinute: 50, // Max emails per minute
+    maxPerHour: 500, // Max emails per hour
+  },
+
+  // Reliability & Retry
+  retryOptions: {
+    maxRetries: 3, // Number of retry attempts
+    retryDelay: 1000, // Initial delay between retries (ms)
+  },
+
+  // Performance
+  enableQueue: true, // Use async queue for bulk sends
+
+  // Monitoring & Debugging
   logger: (message, level) => {
-    console.log(
-      `[${level.toUpperCase()}] ${new Date().toISOString()}: ${message}`
-    );
+    console.log(`[${level.toUpperCase()}] ${message}`);
   },
 });
 ```
+
+### Environment Variables
+
+```bash
+# Required
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+
+# Optional
+EMAIL_FROM="Your Company <your-email@gmail.com>"
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+MAX_EMAILS_PER_SECOND=1
+MAX_EMAILS_PER_MINUTE=50
+MAX_EMAILS_PER_HOUR=500
+MAX_RETRIES=3
+RETRY_DELAY=1000
+ENABLE_QUEUE=true
+```
+
+## 🛡️ Production Features
+
+### Security & Best Practices
+
+- **Environment Configuration** - Keep credentials secure
+- **Input Validation** - Zod-powered validation prevents errors
+- **Gmail App Passwords** - Secure authentication method
+- **No Credential Storage** - Credentials never stored in code
+
+### Reliability & Performance
+
+- **Automatic Retries** - Exponential backoff for failed sends
+- **Rate Limiting** - Prevent provider blocks and ensure delivery
+- **Queue System** - Handle high-volume sending efficiently
+- **Comprehensive Error Handling** - Detailed error reporting
+
+### Monitoring & Debugging
+
+- **Custom Logging** - Integrate with your logging system
+- **Send Metrics** - Track success/failure rates
+- **Queue Statistics** - Monitor processing status
+- **Debug Mode** - Detailed logging for troubleshooting
+
+## 📊 API Overview
+
+### Send Methods
+
+| Method                                 | Description            | Use Case                          |
+| -------------------------------------- | ---------------------- | --------------------------------- |
+| `sendToOne(user, message)`             | Send to single user    | User notifications, confirmations |
+| `sendToAll(users, message)`            | Send to all users      | Newsletters, announcements        |
+| `sendRandom(users, message, count)`    | Send to random subset  | A/B testing, sampling             |
+| `sendFiltered(users, message, filter)` | Send to filtered users | Targeted campaigns, segmentation  |
 
 ### Queue Management
 
 ```typescript
-// When queue is enabled
+// Monitor queue
 const stats = notifier.getQueueStats();
-console.log(`Queue size: ${stats?.size}, Pending: ${stats?.pending}`);
+console.log(`Queue: ${stats?.size} pending, ${stats?.pending} processing`);
 
-// Pause/resume queue
-notifier.pauseQueue();
-notifier.resumeQueue();
+// Control queue
+notifier.pauseQueue(); // Pause processing
+notifier.resumeQueue(); // Resume processing
 ```
 
-## Environment Variables
-
-You can use environment variables for sensitive configuration:
-
-```bash
-# .env file
-SENDER_EMAIL=your-email@gmail.com
-SENDER_PASSWORD=your-app-password
-```
-
-```typescript
-import "dotenv/config";
-
-const notifier = new EmailNotifier({
-  senderEmail: process.env.SENDER_EMAIL!,
-  senderPassword: process.env.SENDER_PASSWORD!,
-  // ... other config
-});
-```
-
-## Gmail Setup
-
-1. Enable 2-Factor Authentication on your Gmail account
-2. Generate an App Password:
-   - Go to Google Account settings
-   - Security → 2-Step Verification → App passwords
-   - Generate a password for "Mail"
-3. Use the generated App Password as `senderPassword`
-
-## Error Handling
-
-The package provides detailed error information:
+### Error Handling
 
 ```typescript
 const result = await notifier.sendToAll(users, message);
 
-result.results.forEach((res, index) => {
-  if (!res.success) {
-    console.error(`Failed to send to ${res.recipient}: ${res.error}`);
+// Check overall success
+console.log(`Success rate: ${result.totalSent}/${users.length}`);
+
+// Handle individual failures
+result.results.forEach((r) => {
+  if (!r.success) {
+    console.error(`Failed to send to ${r.recipient}: ${r.error}`);
   }
 });
 ```
 
-## Testing
+## 🧪 Testing
 
-The package includes comprehensive tests:
+### Mock for Development
 
-```bash
-npm test                # Run tests
-npm run test:watch     # Run tests in watch mode
+```typescript
+// Use environment variable to switch between real and mock
+const notifier =
+  process.env.NODE_ENV === "test"
+    ? new MockEmailNotifier() // Your mock implementation
+    : new EmailNotifier(config);
 ```
 
-## Development
+### Unit Testing with Jest
 
-```bash
-npm run build          # Build TypeScript
-npm run lint           # Run ESLint
-npm run dev            # Run in development mode
+```typescript
+import { EmailNotifier } from "emaily-fi";
+
+describe("EmailNotifier", () => {
+  let notifier: EmailNotifier;
+
+  beforeEach(() => {
+    notifier = new EmailNotifier({
+      emailUser: "test@example.com",
+      emailPass: "test-password",
+      logger: jest.fn(), // Mock logger
+    });
+  });
+
+  it("should send email successfully", async () => {
+    const result = await notifier.sendToOne(
+      { name: "Test", email: "test@example.com" },
+      { subject: "Test", body: "Test message" }
+    );
+
+    expect(result.success).toBe(true);
+  });
+});
 ```
 
-## Future Enhancements
+## 📚 Complete Documentation
 
-- [ ] SendGrid provider support
-- [ ] Mailgun provider support
-- [ ] Template system
-- [ ] Email tracking
-- [ ] Webhook support
-- [ ] Advanced filtering options
+| Document                                              | Description                                        |
+| ----------------------------------------------------- | -------------------------------------------------- |
+| **[📖 API Reference](./docs/API.md)**                 | Complete method documentation and type definitions |
+| **[⚙️ Configuration Guide](./docs/CONFIGURATION.md)** | Detailed setup and configuration options           |
+| **[💡 Examples](./docs/EXAMPLES.md)**                 | Real-world usage patterns and integrations         |
+| **[🔧 Troubleshooting](./docs/TROUBLESHOOTING.md)**   | Common issues and solutions                        |
+| **[🚀 Migration Guide](./docs/MIGRATION.md)**         | Migrating from other email libraries               |
 
-## Contributing
+## 🚀 Getting Started Guide
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### 1. Gmail Setup
 
-## License
+1. Enable 2-Factor Authentication on your Google account
+2. Go to Google Account Settings → Security → App Passwords
+3. Generate a new App Password for "Mail"
+4. Use the 16-character password in your configuration
 
-MIT License - see LICENSE file for details.
+### 2. Basic Implementation
 
-## Security
+```typescript
+import { EmailNotifier, createValidatedConfigFromEnv } from "emaily-fi";
 
-- Never commit credentials to version control
-- Use environment variables for sensitive data
-- Use App Passwords instead of account passwords
-- Regularly rotate credentials
+// Method 1: Environment configuration
+const notifier = new EmailNotifier(createValidatedConfigFromEnv());
 
-## Support
+// Method 2: Direct configuration
+const notifier = new EmailNotifier({
+  emailUser: "your-email@gmail.com",
+  emailPass: "your-app-password",
+  rateLimit: { maxPerSecond: 1 },
+});
 
-For issues and questions, please open an issue on GitHub.
+// Initialize and start sending
+await notifier.initialize();
+
+const result = await notifier.sendToOne(
+  { name: "User", email: "user@example.com" },
+  { subject: "Hello!", body: "Welcome to our service!" }
+);
+```
+
+### 3. Production Deployment
+
+```typescript
+const notifier = new EmailNotifier({
+  emailUser: process.env.EMAIL_USER!,
+  emailPass: process.env.EMAIL_PASS!,
+  emailFrom: process.env.EMAIL_FROM,
+
+  // Production settings
+  enableQueue: true,
+  rateLimit: {
+    maxPerSecond: 2,
+    maxPerMinute: 100,
+    maxPerHour: 1000,
+  },
+  retryOptions: {
+    maxRetries: 5,
+    retryDelay: 2000,
+  },
+
+  // Production logging
+  logger: (message, level) => {
+    if (level === "error") {
+      console.error(`[EMAIL-ERROR] ${message}`);
+      // Send to error monitoring service
+    }
+  },
+});
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how to get started:
+
+### Development Setup
+
+```bash
+# Clone and setup
+git clone https://github.com/yourusername/emaily-fi
+cd emaily-fi
+npm install
+
+# Run tests
+npm test
+
+# Build
+npm run build
+
+# Lint
+npm run lint
+```
+
+### Contributing Guidelines
+
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Commit** your changes: `git commit -m 'Add amazing feature'`
+4. **Push** to the branch: `git push origin feature/amazing-feature`
+5. **Open** a Pull Request
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
+
+## 📈 Roadmap
+
+### Upcoming Features
+
+- 🔌 **SendGrid Provider** - Alternative email service
+- 📧 **Mailgun Support** - Additional provider option
+- 📊 **Analytics Dashboard** - Email metrics and insights
+- 🎨 **Template Engine** - Built-in email templating
+- 🔄 **Webhook Support** - Delivery status callbacks
+- 📱 **SMS Integration** - Multi-channel notifications
+
+### Version History
+
+- **v1.0.0** - Initial release with Gmail SMTP support
+- **v1.1.0** - Queue system and rate limiting (Planned)
+- **v1.2.0** - Additional providers (Planned)
+
+## 📝 License
+
+MIT © [Your Name](https://github.com/yourusername)
+
+## 🆘 Support & Community
+
+### Get Help
+
+- **📖 Documentation** - Check our comprehensive docs
+- **🐛 Issues** - [GitHub Issues](https://github.com/yourusername/emaily-fi/issues)
+- **💬 Discussions** - [GitHub Discussions](https://github.com/yourusername/emaily-fi/discussions)
+- **📧 Email** - support@yourdomain.com
+
+### Stay Updated
+
+- **⭐ Star** this repository for updates
+- **👀 Watch** for new releases
+- **🍴 Fork** to contribute
+
+## 🔗 Quick Links
+
+### Documentation
+
+- [📖 API Reference](./docs/API.md) - Complete method documentation
+- [⚙️ Configuration](./docs/CONFIGURATION.md) - Setup guide
+- [💡 Examples](./docs/EXAMPLES.md) - Real-world patterns
+- [🔧 Troubleshooting](./docs/TROUBLESHOOTING.md) - Common issues
+
+### Development
+
+- [🤝 Contributing](./CONTRIBUTING.md) - Development guidelines
+- [📝 Changelog](./CHANGELOG.md) - Version history
+- [🚀 Migration](./docs/MIGRATION.md) - From other libraries
+
+---
+
+<div align="center">
+
+**Built with ❤️ for the Node.js community**
+
+[⭐ Star on GitHub](https://github.com/yourusername/emaily-fi) | [📦 View on NPM](https://www.npmjs.com/package/emaily-fi) | [📖 Read the Docs](./docs/API.md)
+
+</div>

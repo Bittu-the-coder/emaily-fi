@@ -1,14 +1,21 @@
+/**
+ * Email-Notify Example
+ *
+ * This example demonstrates the basic usage of the emaily-fi package
+ * for sending emails with Gmail SMTP.
+ */
+
 import { EmailNotifier } from "./src";
 import { createValidatedConfigFromEnv } from "./src/env-config";
 import "dotenv/config";
 
-async function example() {
-  // Option 1: Configuration from environment variables (recommended)
+async function main() {
   try {
-    console.log("🔧 Creating configuration from environment variables...");
-    const envConfig = createValidatedConfigFromEnv();
+    // Method 1: Using environment variables (recommended)
+    console.log("� Initializing EmailNotifier with environment config...");
+
     const notifier = new EmailNotifier({
-      ...envConfig,
+      ...createValidatedConfigFromEnv(),
       logger: (message, level) => {
         console.log(
           `[${level.toUpperCase()}] ${new Date().toISOString()}: ${message}`
@@ -16,40 +23,72 @@ async function example() {
       },
     });
 
-    await runEmailCampaign(notifier);
-  } catch (error) {
+    await notifier.initialize();
+    console.log("✅ EmailNotifier initialized successfully!");
+
+    // Sample users
+    const users = [
+      { name: "Alice Johnson", email: "alice@example.com" },
+      { name: "Bob Smith", email: "bob@example.com" },
+      { name: "Charlie Brown", email: "charlie@example.com" },
+    ];
+
+    // Sample message
+    const message = {
+      subject: "Welcome to Email-Notify! 🎉",
+      body: `Hello!\n\nWelcome to our email notification service. This is a test message sent using the emaily-fi package.\n\nBest regards,\nThe Email-Notify Team`,
+      html: `
+        <h1>Welcome to Email-Notify! 🎉</h1>
+        <p>Hello!</p>
+        <p>Welcome to our email notification service. This is a test message sent using the emaily-fi package.</p>
+        <p>Best regards,<br><strong>The Email-Notify Team</strong></p>
+      `,
+    };
+
+    // Example 1: Send to single user
+    console.log("\n📧 Example 1: Sending to single user...");
+    const singleResult = await notifier.sendToOne(users[0], {
+      ...message,
+      subject: "Personal Welcome Message",
+    });
+
+    if (singleResult.success) {
+      console.log(
+        `✅ Email sent to ${users[0].email} (ID: ${singleResult.messageId})`
+      );
+    } else {
+      console.error(
+        `❌ Failed to send to ${users[0].email}: ${singleResult.error}`
+      );
+    }
+
+    // Example 2: Send to all users
+    console.log("\n📧 Example 2: Sending to all users...");
+    const batchResult = await notifier.sendToAll(users, message);
+
     console.log(
-      "⚠️  Environment variables not configured, using manual config..."
+      `📊 Batch send results: ✅ Sent: ${batchResult.totalSent}, ❌ Failed: ${batchResult.totalFailed}`
     );
 
-    // Option 2: Manual configuration (fallback)
-    const manualNotifier = new EmailNotifier({
-      // Gmail SMTP Configuration (preferred format)
-      smtpHost: "smtp.gmail.com",
-      smtpPort: 587,
-      emailUser: "your-email@gmail.com",
-      emailPass: "your-app-password",
-      emailFrom: "Your Company <your-email@gmail.com>",
+    console.log("\n🎉 Examples completed successfully!");
+  } catch (error) {
+    console.error("\n💥 Error occurred:", error);
 
-      // Or use legacy format (still supported)
-      // senderEmail: 'your-email@gmail.com',
-      // senderPassword: 'your-app-password',
+    if (
+      error instanceof Error &&
+      error.message.includes("Missing required environment variables")
+    ) {
+      console.log("\n💡 Setup Instructions:");
+      console.log("1. Create a .env file in your project root");
+      console.log("2. Add the following variables:");
+      console.log("   EMAIL_USER=your-email@gmail.com");
+      console.log("   EMAIL_PASS=your-app-password");
+      console.log(
+        "3. Enable 2FA on your Gmail account and generate an App Password"
+      );
+    }
 
-      rateLimit: {
-        maxPerSecond: 1,
-      },
-      retryOptions: {
-        maxRetries: 3,
-        retryDelay: 1000,
-      },
-      logger: (message, level) => {
-        console.log(
-          `[${level.toUpperCase()}] ${new Date().toISOString()}: ${message}`
-        );
-      },
-    });
-
-    await runEmailCampaign(manualNotifier);
+    process.exit(1);
   }
 }
 
@@ -127,7 +166,8 @@ async function runEmailCampaign(notifier: EmailNotifier) {
 
 // Run example if this file is executed directly
 if (require.main === module) {
-  example().catch(console.error);
+  main().catch(console.error);
 }
 
-export { example };
+// Export functions for testing
+export { main, runEmailCampaign };
