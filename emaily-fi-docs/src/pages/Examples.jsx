@@ -14,7 +14,6 @@ const Examples = () => {
 
   const examples = [
     { id: "newsletter", name: "Newsletter System", icon: Users },
-    { id: "oauth2", name: "Gmail OAuth2 Setup", icon: ShoppingCart },
     { id: "ecommerce", name: "E-commerce Notifications", icon: ShoppingCart },
     { id: "user-auth", name: "User Authentication", icon: Bell },
     { id: "express", name: "Express.js Integration", icon: Code },
