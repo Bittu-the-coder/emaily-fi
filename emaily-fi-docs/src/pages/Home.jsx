@@ -184,8 +184,8 @@ console.log(result.success ? "✅ Sent!" : \`❌ Failed: \${result.error}\`);`;
       </div>
 
       {/* Call to Action */}
-      <div className="text-center space-y-6 bg-gray-50 dark:bg-gray-800 rounded-xl p-12">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+      <div className="text-center space-y-6 bg-gray-800 rounded-xl p-12">
+        <h2 className="text-3xl font-bold text-white">
           Ready to Get Started?
         </h2>
         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
