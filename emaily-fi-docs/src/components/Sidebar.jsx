@@ -5,6 +5,7 @@ import {
   Rocket,
   Download,
   Settings,
+  Shield,
   Code,
   BookOpen,
   ArrowRight,
@@ -43,21 +44,22 @@ const Sidebar = ({ isOpen, onClose }) => {
       {/* Sidebar */}
       <aside
         className={`
-        fixed top-16 left-0 bottom-0 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 
+        fixed top-16 left-0 bottom-0 w-64 bg-gray-800 border-r border-gray-700 
         transform transition-transform duration-200 ease-in-out z-50
         ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       `}
+        style={{ top: "64px" }}
       >
-        <div className="p-4 lg:hidden">
+        <div className="lg:hidden">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="mobile-close-btn p-2 rounded-md text-gray-400 hover:bg-gray-700"
           >
             <X size={20} />
           </button>
         </div>
 
-        <nav className="mt-8 lg:mt-4">
+        <nav className="mt-4 lg:mt-4 px-2">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
@@ -68,11 +70,11 @@ const Sidebar = ({ isOpen, onClose }) => {
                 to={item.path}
                 onClick={onClose}
                 className={`
-                  flex items-center px-6 py-3 text-sm font-medium transition-colors duration-150
+                  flex items-center px-4 py-3 mx-2 text-sm font-medium transition-colors duration-150 rounded-lg
                   ${
                     active
-                      ? "bg-orange-100 dark:bg-orange-900 dark:bg-opacity-30 sidebar-active border-r-4 border-orange-500"
-                      : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white"
+                      ? "bg-orange-900 bg-opacity-30 sidebar-active border-l-4 border-orange-500"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
                   }
                 `}
               >
@@ -83,14 +85,14 @@ const Sidebar = ({ isOpen, onClose }) => {
           })}
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 dark:border-gray-700">
-          <div className="text-xs text-gray-500 dark:text-gray-400">
+        <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-700">
+          <div className="text-xs text-gray-400">
             <p>Version 1.0.2</p>
             <p className="mt-1">
               Made with ❤️ by{" "}
               <a
                 href="https://github.com/bittu-the-coder"
-                className="text-white hover:underline"
+                className="text-primary hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >

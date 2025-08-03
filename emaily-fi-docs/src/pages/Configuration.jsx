@@ -146,15 +146,98 @@ await notifier.initialize();`}
 
                 <CodeBlock language="typescript">
                   {`const notifier = new EmailNotifier({
-  provider: "gmail-oauth",
+  provider: "gmail-oauth2",
   emailUser: "your-email@gmail.com",
   emailFrom: "Your Name <your-email@gmail.com>",
-  clientId: "your-google-client-id.apps.googleusercontent.com",
-  clientSecret: "your-google-client-secret",
-  refreshToken: "your-refresh-token",
-  // accessToken is optional - will be refreshed automatically
+  gmailOAuth2: {
+    clientId: "your-google-client-id.apps.googleusercontent.com",
+    clientSecret: "your-google-client-secret",
+    refreshToken: "your-refresh-token",
+  },
 });`}
                 </CodeBlock>
+
+                {/* OAuth2 Setup Steps */}
+                <div className="mt-6 p-4 bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-lg">
+                  <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-3">
+                    OAuth2 Setup Guide
+                  </h4>
+
+                  <div className="space-y-4 text-sm">
+                    <div>
+                      <h5 className="font-medium text-blue-800 dark:text-blue-300">
+                        1. Create Google Cloud Project
+                      </h5>
+                      <p className="text-blue-700 dark:text-blue-300">
+                        • Go to{" "}
+                        <a
+                          href="https://console.cloud.google.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline"
+                        >
+                          Google Cloud Console
+                        </a>
+                        <br />
+                        • Create a new project or select existing
+                        <br />• Enable Gmail API (APIs & Services → Library →
+                        Search "Gmail API" → Enable)
+                      </p>
+                    </div>
+
+                    <div>
+                      <h5 className="font-medium text-blue-800 dark:text-blue-300">
+                        2. Create OAuth2 Credentials
+                      </h5>
+                      <p className="text-blue-700 dark:text-blue-300">
+                        • Go to APIs & Services → Credentials
+                        <br />
+                        • Click "Create Credentials" → "OAuth client ID"
+                        <br />
+                        • Choose "Desktop application"
+                        <br />• Download the JSON file and extract clientId and
+                        clientSecret
+                      </p>
+                    </div>
+
+                    <div>
+                      <h5 className="font-medium text-blue-800 dark:text-blue-300">
+                        3. Generate Refresh Token
+                      </h5>
+                      <div className="bg-white dark:bg-gray-800 p-3 rounded border mt-2">
+                        <CodeBlock language="typescript">
+                          {`import { GmailOAuth2Provider } from "emaily-fi";
+
+// Generate authorization URL
+const authUrl = GmailOAuth2Provider.generateAuthUrl(clientId, clientSecret);
+console.log("Visit:", authUrl);
+
+// After user authorization, exchange code for refresh token
+const refreshToken = await GmailOAuth2Provider.getRefreshToken(
+  clientId,
+  clientSecret,
+  authorizationCode
+);`}
+                        </CodeBlock>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h5 className="font-medium text-blue-800 dark:text-blue-300">
+                        4. Environment Variables
+                      </h5>
+                      <div className="bg-white dark:bg-gray-800 p-3 rounded border mt-2">
+                        <CodeBlock language="bash">
+                          {`GMAIL_OAUTH2_CLIENT_ID=your-client-id.apps.googleusercontent.com
+GMAIL_OAUTH2_CLIENT_SECRET=your-client-secret
+GMAIL_OAUTH2_REFRESH_TOKEN=your-refresh-token
+EMAIL_USER=your-email@gmail.com
+EMAIL_FROM=Your Name <your-email@gmail.com>`}
+                        </CodeBlock>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* SendGrid */}
@@ -465,7 +548,7 @@ LOG_LEVEL=info`}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-              🔒 Security
+              Security
             </h3>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300">
               <li>• Never commit credentials to version control</li>
@@ -477,7 +560,7 @@ LOG_LEVEL=info`}
 
           <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-              ⚡ Performance
+              Performance
             </h3>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300">
               <li>• Enable queue for bulk operations</li>
@@ -489,7 +572,7 @@ LOG_LEVEL=info`}
 
           <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-              🛡️ Reliability
+              Reliability
             </h3>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300">
               <li>• Configure retry mechanisms</li>
@@ -501,7 +584,7 @@ LOG_LEVEL=info`}
 
           <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-              📊 Monitoring
+              Monitoring
             </h3>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300">
               <li>• Implement custom logging</li>

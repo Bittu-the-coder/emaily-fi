@@ -39,9 +39,9 @@ const Migration = () => {
       </div>
 
       {/* Migration Benefits */}
-      <div className="bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border border-green-200 dark:border-green-800 rounded-xl p-8">
+      <div className="bg-gray-800 border border-green-200 dark:border-green-800 rounded-xl p-8">
         <h2 className="text-2xl font-bold text-green-800 dark:text-green-200 mb-4">
-          ✨ Why Migrate to emaily-fi?
+          Why Migrate to emaily-fi?
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -170,11 +170,11 @@ const Migration = () => {
 
             <div className="space-y-6">
               {/* Before and After */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 {/* Before */}
-                <div className="bg-red-50 dark:bg-red-900 dark:bg-opacity-20 border border-red-200 dark:border-red-800 rounded-xl p-6">
+                <div className="bg-gray-800 border border-red-200 dark:border-red-800 rounded-xl p-6">
                   <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">
-                    ❌ Before (Nodemailer)
+                    Before (Nodemailer)
                   </h3>
 
                   <CodeBlock language="typescript">
@@ -222,9 +222,9 @@ async function sendBulkEmails(recipients: string[], subject: string, html: strin
                 </div>
 
                 {/* After */}
-                <div className="bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border border-green-200 dark:border-green-800 rounded-xl p-6">
+                <div className="bg-gray-800 border border-green-200 dark:border-green-800 rounded-xl p-6">
                   <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">
-                    ✅ After (emaily-fi)
+                    After (emaily-fi)
                   </h3>
 
                   <CodeBlock language="typescript">
@@ -265,7 +265,7 @@ console.log(\`Sent: \${bulkResult.totalSent}, Failed: \${bulkResult.totalFailed}
               </div>
 
               {/* Step-by-step Migration */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                   Step-by-Step Migration
                 </h3>
@@ -275,7 +275,7 @@ console.log(\`Sent: \${bulkResult.totalSent}, Failed: \${bulkResult.totalFailed}
                     <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       1
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 dark:text-white">
                         Install emaily-fi
                       </h4>
@@ -289,7 +289,7 @@ console.log(\`Sent: \${bulkResult.totalSent}, Failed: \${bulkResult.totalFailed}
                     <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       2
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 dark:text-white">
                         Replace Nodemailer imports
                       </h4>
@@ -307,7 +307,7 @@ import { EmailNotifier } from 'emaily-fi';`}
                     <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       3
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 dark:text-white">
                         Update configuration
                       </h4>
@@ -329,7 +329,7 @@ await notifier.initialize();`}
                     <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       4
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 dark:text-white">
                         Update email sending code
                       </h4>
@@ -351,7 +351,7 @@ const result = await notifier.sendToOne(
                     <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       5
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 dark:text-white">
                         Remove manual rate limiting and error handling
                       </h4>
@@ -371,7 +371,7 @@ const bulkResult = await notifier.sendToAll(users, message);`}
               </div>
 
               {/* Migration Helper */}
-              <div className="bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
+              <div className="bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
                 <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-200 mb-4">
                   🔧 Migration Helper Function
                 </h3>
@@ -444,11 +444,11 @@ export function createTransporter(config: any) {
 
             <div className="space-y-6">
               {/* Before and After */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 {/* Before */}
-                <div className="bg-red-50 dark:bg-red-900 dark:bg-opacity-20 border border-red-200 dark:border-red-800 rounded-xl p-6">
+                <div className="bg-gray-800 border border-red-200 dark:border-red-800 rounded-xl p-6">
                   <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">
-                    ❌ Before (SendGrid SDK)
+                    Before (SendGrid SDK)
                   </h3>
 
                   <CodeBlock language="typescript">
@@ -495,9 +495,9 @@ async function sendBulkEmails(recipients: string[], subject: string, html: strin
                 </div>
 
                 {/* After */}
-                <div className="bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border border-green-200 dark:border-green-800 rounded-xl p-6">
+                <div className="bg-gray-800 border border-green-200 dark:border-green-800 rounded-xl p-6">
                   <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">
-                    ✅ After (emaily-fi with SendGrid)
+                    After (emaily-fi with SendGrid)
                   </h3>
 
                   <CodeBlock language="typescript">
@@ -568,7 +568,7 @@ bulkResult.results.forEach(r => {
                       <span className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                         1
                       </span>
-                      <div>
+                      <div className="flex-1">
                         <p className="font-medium text-gray-900 dark:text-white">
                           Update dependencies
                         </p>
@@ -583,7 +583,7 @@ npm install emaily-fi`}
                       <span className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                         2
                       </span>
-                      <div>
+                      <div className="flex-1">
                         <p className="font-medium text-gray-900 dark:text-white">
                           Replace imports and initialization
                         </p>
@@ -610,7 +610,7 @@ await notifier.initialize();`}
                       <span className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                         3
                       </span>
-                      <div>
+                      <div className="flex-1">
                         <p className="font-medium text-gray-900 dark:text-white">
                           Update email sending calls
                         </p>
@@ -764,7 +764,7 @@ const result = await notifier.sendToOne(
 );`}
               </CodeBlock>
 
-              <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <div className="mt-4 p-4 bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-lg">
                 <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
                   SES SMTP Regions
                 </h4>
@@ -858,7 +858,7 @@ const sesEndpoints = {
       </div>
 
       {/* Get Help */}
-      <div className="bg-primary bg-opacity-5 dark:bg-primary dark:bg-opacity-10 rounded-xl p-8">
+      <div className="bg-gray-800 rounded-xl p-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           Need Help with Migration?
         </h2>
@@ -868,14 +868,6 @@ const sesEndpoints = {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <a
-            href="https://github.com/bittu-the-coder/emaily-fi/discussions"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-hover transition-colors shadow-button"
-          >
-            Ask on GitHub Discussions
-          </a>
           <a
             href="https://github.com/bittu-the-coder/emaily-fi/issues"
             target="_blank"

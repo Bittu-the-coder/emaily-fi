@@ -169,10 +169,10 @@ const notifier = new EmailNotifier({
   emailPass: "password",
 });
 
-console.log("✅ Installation verified!");`}
+console.log(" Installation verified!");`}
           </CodeBlock>
 
-          <div className="mt-4 p-4 bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border border-green-200 dark:border-green-800 rounded-lg">
+          <div className="mt-4 p-4 bg-green-900 rounded-lg">
             <div className="flex items-center space-x-2">
               <CheckCircle className="text-green-600" size={16} />
               <span className="text-green-800 dark:text-green-200 font-medium">
@@ -212,9 +212,9 @@ npm install -D @types/nodemailer jest`}
       </div>
 
       {/* Next Steps */}
-      <div className="bg-primary bg-opacity-5 dark:bg-primary dark:bg-opacity-10 rounded-xl p-8">
+      <div className="bg-gray-800 rounded-xl p-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          🎉 Installation Complete!
+          Installation Complete!
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6">
           Great! You've successfully installed emaily-fi. Now you're ready to
@@ -269,10 +269,10 @@ npm install -D @types/nodemailer jest`}
             <div className="px-6 pb-4 text-gray-600 dark:text-gray-300">
               <p className="mb-2">Ensure you're importing correctly:</p>
               <CodeBlock language="typescript">
-                {`// ✅ Correct
+                {`//  Correct
 import { EmailNotifier } from "emaily-fi";
 
-// ❌ Incorrect
+//  Incorrect
 import EmailNotifier from "emaily-fi";`}
               </CodeBlock>
             </div>

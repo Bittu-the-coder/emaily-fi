@@ -12,6 +12,7 @@ A powerful, production-ready TypeScript package for sending email notifications 
 🔗 **[Complete Documentation & Setup Guide](https://emaily-fi.vercel.app/)**
 
 Visit our comprehensive documentation website for:
+
 - 🚀 Quick Start Guide
 - ⚙️ Configuration Options
 - 📖 API Reference
@@ -83,11 +84,11 @@ const result = await notifier.sendToOne(
 
 ## 📋 Supported Providers
 
-| Provider | Security | Setup Difficulty | Recommended For |
-|----------|----------|------------------|-----------------|
-| **Gmail OAuth2** | 🔒 High | Medium | Production apps, web applications |
-| **Gmail SMTP** | 🔒 Medium | Easy | Development, personal projects |
-| **SendGrid** | 🔒 High | Easy | High-volume, professional services |
+| Provider         | Security  | Setup Difficulty | Recommended For                    |
+| ---------------- | --------- | ---------------- | ---------------------------------- |
+| **Gmail OAuth2** | 🔒 High   | Medium           | Production apps, web applications  |
+| **Gmail SMTP**   | 🔒 Medium | Easy             | Development, personal projects     |
+| **SendGrid**     | 🔒 High   | Easy             | High-volume, professional services |
 
 ## 🔗 Links
 

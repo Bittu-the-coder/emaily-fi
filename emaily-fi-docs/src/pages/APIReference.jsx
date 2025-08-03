@@ -80,37 +80,104 @@ const APIReference = () => {
 }
 
 interface Config {
-  // Required
+  // Common Settings
   emailUser: string;
-  emailPass: string;
-  
-  // Optional
-  provider?: "gmail" | "gmail-oauth" | "sendgrid";
   emailFrom?: string;
+  
+  // Provider Selection
+  provider?: "gmail" | "gmail-oauth2" | "sendgrid";
+  
+  // Gmail SMTP (Traditional)
+  emailPass?: string;
+  
+  // Gmail OAuth2
+  gmailOAuth2?: {
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+  };
+  
+  // SendGrid
+  sendGridApiKey?: string;
+  
+  // SMTP Configuration (Optional)
   smtpHost?: string;
   smtpPort?: number;
   smtpSecure?: boolean;
+  
+  // Advanced Options
   rateLimit?: RateLimit;
   retryOptions?: RetryOptions;
   enableQueue?: boolean;
   logger?: (message: string, level: LogLevel) => void;
+}
+
+interface RateLimit {
+  maxPerSecond?: number;
+  maxPerMinute?: number;
+  maxPerHour?: number;
+}
+
+interface RetryOptions {
+  maxRetries?: number;
+  retryDelay?: number;
 }`}
             </CodeBlock>
 
-            <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border border-blue-200 dark:border-blue-800 rounded-lg">
-              <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
-                Example
+            <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg">
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
+                Configuration Examples
               </h4>
-              <CodeBlock language="typescript">
-                {`import { EmailNotifier } from "emaily-fi";
 
-const notifier = new EmailNotifier({
+              <div className="space-y-4">
+                <div>
+                  <h5 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">
+                    Gmail OAuth2 (Recommended)
+                  </h5>
+                  <CodeBlock language="typescript">
+                    {`const notifier = new EmailNotifier({
+  provider: "gmail-oauth2",
   emailUser: "your-email@gmail.com",
-  emailPass: "your-app-password",
-  rateLimit: { maxPerSecond: 1 },
-  enableQueue: true,
+  emailFrom: "Your Name <your-email@gmail.com>",
+  gmailOAuth2: {
+    clientId: process.env.GMAIL_OAUTH2_CLIENT_ID!,
+    clientSecret: process.env.GMAIL_OAUTH2_CLIENT_SECRET!,
+    refreshToken: process.env.GMAIL_OAUTH2_REFRESH_TOKEN!,
+  },
+  rateLimit: { maxPerSecond: 5, maxPerMinute: 100 },
 });`}
-              </CodeBlock>
+                  </CodeBlock>
+                </div>
+
+                <div>
+                  <h5 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">
+                    SendGrid
+                  </h5>
+                  <CodeBlock language="typescript">
+                    {`const notifier = new EmailNotifier({
+  provider: "sendgrid",
+  sendGridApiKey: process.env.SENDGRID_API_KEY!,
+  emailFrom: "verified-sender@yourdomain.com",
+  rateLimit: { maxPerSecond: 10, maxPerMinute: 600 },
+});`}
+                  </CodeBlock>
+                </div>
+
+                <div>
+                  <h5 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">
+                    Gmail SMTP (Traditional)
+                  </h5>
+                  <CodeBlock language="typescript">
+                    {`const notifier = new EmailNotifier({
+  provider: "gmail", // or omit for default
+  emailUser: "your-email@gmail.com",
+  emailPass: process.env.GMAIL_APP_PASSWORD!,
+  emailFrom: "Your Name <your-email@gmail.com>",
+  rateLimit: { maxPerSecond: 1, maxPerMinute: 50 },
+});`}
+                  </CodeBlock>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -509,6 +576,101 @@ type LogLevel = "debug" | "info" | "warn" | "error";`}
             Utility Functions
           </h2>
 
+          {/* Gmail OAuth2 Helpers */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              Gmail OAuth2 Helper Methods
+            </h3>
+
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Static methods for setting up Gmail OAuth2 authentication:
+            </p>
+
+            <div className="space-y-6">
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  generateAuthUrl()
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-3">
+                  Generate an authorization URL for OAuth2 setup.
+                </p>
+                <CodeBlock language="typescript">
+                  {`import { GmailOAuth2Provider } from "emaily-fi";
+
+// Generate authorization URL
+const authUrl = GmailOAuth2Provider.generateAuthUrl(
+  clientId: string,
+  clientSecret: string
+): string
+
+// Example usage
+const authUrl = GmailOAuth2Provider.generateAuthUrl(
+  "your-client-id.apps.googleusercontent.com",
+  "your-client-secret"
+);
+
+console.log("Visit this URL to authorize:", authUrl);
+// User visits URL, grants permission, receives authorization code`}
+                </CodeBlock>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  getRefreshToken()
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-3">
+                  Exchange authorization code for a refresh token.
+                </p>
+                <CodeBlock language="typescript">
+                  {`// Exchange authorization code for refresh token
+const refreshToken = await GmailOAuth2Provider.getRefreshToken(
+  clientId: string,
+  clientSecret: string,
+  authorizationCode: string
+): Promise<string>
+
+// Example usage
+const refreshToken = await GmailOAuth2Provider.getRefreshToken(
+  "your-client-id.apps.googleusercontent.com",
+  "your-client-secret",
+  "AUTHORIZATION_CODE_FROM_USER_CONSENT"
+);
+
+console.log("Save this refresh token:", refreshToken);
+// Store this token securely - use it in your application config`}
+                </CodeBlock>
+              </div>
+
+              <div className="p-4 bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border border-green-200 dark:border-green-800 rounded-lg">
+                <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">
+                  💡 Complete OAuth2 Setup Flow
+                </h4>
+                <CodeBlock language="typescript">
+                  {`// Step 1: Generate authorization URL
+const authUrl = GmailOAuth2Provider.generateAuthUrl(clientId, clientSecret);
+console.log("1. Visit:", authUrl);
+
+// Step 2: User authorizes and you get authorization code
+// (This happens in the browser)
+
+// Step 3: Exchange code for refresh token
+const refreshToken = await GmailOAuth2Provider.getRefreshToken(
+  clientId,
+  clientSecret,
+  authorizationCode
+);
+
+// Step 4: Use in your application
+const notifier = new EmailNotifier({
+  provider: "gmail-oauth2",
+  emailUser: "your-email@gmail.com",
+  gmailOAuth2: { clientId, clientSecret, refreshToken },
+});`}
+                </CodeBlock>
+              </div>
+            </div>
+          </div>
+
           {/* Environment Configuration */}
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
@@ -644,9 +806,9 @@ try {
   const result = await notifier.sendToOne(user, message);
   
   if (result.success) {
-    console.log("✅ Email sent:", result.messageId);
+    console.log("Email sent:", result.messageId);
   } else {
-    console.error("❌ Send failed:", result.error);
+    console.error("Send failed:", result.error);
     
     // Handle specific error types
     if (result.error?.includes("authentication")) {
@@ -708,7 +870,7 @@ failures.forEach(failure => {
       )}
 
       {/* Quick Reference */}
-      <div className="bg-primary bg-opacity-5 dark:bg-primary dark:bg-opacity-10 rounded-xl p-8">
+      <div className="bg-gray-800 rounded-xl p-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           Quick Reference
         </h2>

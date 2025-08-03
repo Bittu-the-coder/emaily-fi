@@ -39,17 +39,28 @@ const Home = () => {
       icon: Rocket,
       title: "Easy Setup",
       description:
-        "Get started in minutes with Gmail SMTP or OAuth2 authentication.",
+        "Get started in minutes with Gmail SMTP, Gmail OAuth2, or SendGrid providers.",
     },
   ];
 
   const quickStartCode = `import { EmailNotifier } from "emaily-fi";
 
-// Setup with Gmail SMTP
+// Option 1: Gmail SMTP (requires app password)
 const notifier = new EmailNotifier({
   emailUser: "your-email@gmail.com",
   emailPass: "your-app-password",
   rateLimit: { maxPerSecond: 1 },
+});
+
+// Option 2: Gmail OAuth2 (recommended for production)
+const notifier = new EmailNotifier({
+  provider: "gmail-oauth2",
+  emailUser: "your-email@gmail.com",
+  gmailOAuth2: {
+    clientId: "your-google-client-id.apps.googleusercontent.com",
+    clientSecret: "your-google-client-secret",
+    refreshToken: "your-refresh-token",
+  },
 });
 
 await notifier.initialize();
@@ -82,8 +93,8 @@ console.log(result.success ? "✅ Sent!" : \`❌ Failed: \${result.error}\`);`;
 
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
           A powerful TypeScript package for sending email notifications with
-          enterprise-grade features including Gmail SMTP, rate limiting, retry
-          mechanisms, and queue system.
+          enterprise-grade features including Gmail SMTP, Gmail OAuth2, SendGrid
+          support, rate limiting, retry mechanisms, and queue system.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -112,7 +123,7 @@ console.log(result.success ? "✅ Sent!" : \`❌ Failed: \${result.error}\`);`;
           Quick Start
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1  gap-8">
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Install via npm
@@ -159,7 +170,7 @@ console.log(result.success ? "✅ Sent!" : \`❌ Failed: \${result.error}\`);`;
       </div>
 
       {/* Stats Section */}
-      <div className="bg-primary bg-opacity-5 dark:bg-primary dark:bg-opacity-10 rounded-xl p-8">
+      <div className="bg-gray-800 rounded-xl p-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
             <div className="text-3xl font-bold text-white mb-2">1.0.2</div>

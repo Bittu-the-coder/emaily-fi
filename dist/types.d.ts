@@ -17,18 +17,26 @@ export interface MessageInput {
     bcc?: string[];
     attachments?: Attachment[];
 }
+export interface GmailOAuth2Config {
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    emailUser?: string;
+    redirectUri?: string;
+}
 export interface Config {
     smtpHost?: string;
     smtpPort?: number;
     emailUser?: string;
     emailPass?: string;
     emailFrom?: string;
+    gmailOAuth2?: GmailOAuth2Config;
     sendGridApiKey?: string;
     mailgunApiKey?: string;
     mailgunDomain?: string;
     senderEmail?: string;
     senderPassword?: string;
-    provider?: "gmail" | "sendgrid" | "mailgun";
+    provider?: "gmail" | "gmail-oauth2" | "sendgrid" | "mailgun";
     rateLimit?: {
         maxPerSecond?: number;
         maxPerMinute?: number;
@@ -117,18 +125,56 @@ export declare const MessageInputSchema: z.ZodObject<{
         contentType?: string | undefined;
     }[] | undefined;
 }>;
+export declare const GmailOAuth2ConfigSchema: z.ZodObject<{
+    clientId: z.ZodString;
+    clientSecret: z.ZodString;
+    refreshToken: z.ZodString;
+    emailUser: z.ZodOptional<z.ZodString>;
+    redirectUri: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    emailUser?: string | undefined;
+    redirectUri?: string | undefined;
+}, {
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    emailUser?: string | undefined;
+    redirectUri?: string | undefined;
+}>;
 export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     smtpHost: z.ZodDefault<z.ZodString>;
     smtpPort: z.ZodDefault<z.ZodNumber>;
     emailUser: z.ZodOptional<z.ZodString>;
     emailPass: z.ZodOptional<z.ZodString>;
     emailFrom: z.ZodOptional<z.ZodString>;
+    gmailOAuth2: z.ZodOptional<z.ZodObject<{
+        clientId: z.ZodString;
+        clientSecret: z.ZodString;
+        refreshToken: z.ZodString;
+        emailUser: z.ZodOptional<z.ZodString>;
+        redirectUri: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        clientId: string;
+        clientSecret: string;
+        refreshToken: string;
+        emailUser?: string | undefined;
+        redirectUri?: string | undefined;
+    }, {
+        clientId: string;
+        clientSecret: string;
+        refreshToken: string;
+        emailUser?: string | undefined;
+        redirectUri?: string | undefined;
+    }>>;
     sendGridApiKey: z.ZodOptional<z.ZodString>;
     mailgunApiKey: z.ZodOptional<z.ZodString>;
     mailgunDomain: z.ZodOptional<z.ZodString>;
     senderEmail: z.ZodOptional<z.ZodString>;
     senderPassword: z.ZodOptional<z.ZodString>;
-    provider: z.ZodDefault<z.ZodEnum<["gmail", "sendgrid", "mailgun"]>>;
+    provider: z.ZodDefault<z.ZodEnum<["gmail", "gmail-oauth2", "sendgrid", "mailgun"]>>;
     rateLimit: z.ZodOptional<z.ZodObject<{
         maxPerSecond: z.ZodOptional<z.ZodNumber>;
         maxPerMinute: z.ZodOptional<z.ZodNumber>;
@@ -157,11 +203,18 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     smtpHost: string;
     smtpPort: number;
-    provider: "gmail" | "sendgrid" | "mailgun";
+    provider: "gmail" | "gmail-oauth2" | "sendgrid" | "mailgun";
     enableQueue: boolean;
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    gmailOAuth2?: {
+        clientId: string;
+        clientSecret: string;
+        refreshToken: string;
+        emailUser?: string | undefined;
+        redirectUri?: string | undefined;
+    } | undefined;
     sendGridApiKey?: string | undefined;
     mailgunApiKey?: string | undefined;
     mailgunDomain?: string | undefined;
@@ -178,17 +231,24 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     } | undefined;
     logger?: ((...args: unknown[]) => unknown) | undefined;
 }, {
+    emailUser?: string | undefined;
     smtpHost?: string | undefined;
     smtpPort?: number | undefined;
-    emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    gmailOAuth2?: {
+        clientId: string;
+        clientSecret: string;
+        refreshToken: string;
+        emailUser?: string | undefined;
+        redirectUri?: string | undefined;
+    } | undefined;
     sendGridApiKey?: string | undefined;
     mailgunApiKey?: string | undefined;
     mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
-    provider?: "gmail" | "sendgrid" | "mailgun" | undefined;
+    provider?: "gmail" | "gmail-oauth2" | "sendgrid" | "mailgun" | undefined;
     rateLimit?: {
         maxPerSecond?: number | undefined;
         maxPerMinute?: number | undefined;
@@ -203,11 +263,18 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
 }>, {
     smtpHost: string;
     smtpPort: number;
-    provider: "gmail" | "sendgrid" | "mailgun";
+    provider: "gmail" | "gmail-oauth2" | "sendgrid" | "mailgun";
     enableQueue: boolean;
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    gmailOAuth2?: {
+        clientId: string;
+        clientSecret: string;
+        refreshToken: string;
+        emailUser?: string | undefined;
+        redirectUri?: string | undefined;
+    } | undefined;
     sendGridApiKey?: string | undefined;
     mailgunApiKey?: string | undefined;
     mailgunDomain?: string | undefined;
@@ -224,17 +291,24 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     } | undefined;
     logger?: ((...args: unknown[]) => unknown) | undefined;
 }, {
+    emailUser?: string | undefined;
     smtpHost?: string | undefined;
     smtpPort?: number | undefined;
-    emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    gmailOAuth2?: {
+        clientId: string;
+        clientSecret: string;
+        refreshToken: string;
+        emailUser?: string | undefined;
+        redirectUri?: string | undefined;
+    } | undefined;
     sendGridApiKey?: string | undefined;
     mailgunApiKey?: string | undefined;
     mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
-    provider?: "gmail" | "sendgrid" | "mailgun" | undefined;
+    provider?: "gmail" | "gmail-oauth2" | "sendgrid" | "mailgun" | undefined;
     rateLimit?: {
         maxPerSecond?: number | undefined;
         maxPerMinute?: number | undefined;
@@ -249,11 +323,18 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
 }>, {
     smtpHost: string;
     smtpPort: number;
-    provider: "gmail" | "sendgrid" | "mailgun";
+    provider: "gmail" | "gmail-oauth2" | "sendgrid" | "mailgun";
     enableQueue: boolean;
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    gmailOAuth2?: {
+        clientId: string;
+        clientSecret: string;
+        refreshToken: string;
+        emailUser?: string | undefined;
+        redirectUri?: string | undefined;
+    } | undefined;
     sendGridApiKey?: string | undefined;
     mailgunApiKey?: string | undefined;
     mailgunDomain?: string | undefined;
@@ -270,17 +351,24 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     } | undefined;
     logger?: ((...args: unknown[]) => unknown) | undefined;
 }, {
+    emailUser?: string | undefined;
     smtpHost?: string | undefined;
     smtpPort?: number | undefined;
-    emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    gmailOAuth2?: {
+        clientId: string;
+        clientSecret: string;
+        refreshToken: string;
+        emailUser?: string | undefined;
+        redirectUri?: string | undefined;
+    } | undefined;
     sendGridApiKey?: string | undefined;
     mailgunApiKey?: string | undefined;
     mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
-    provider?: "gmail" | "sendgrid" | "mailgun" | undefined;
+    provider?: "gmail" | "gmail-oauth2" | "sendgrid" | "mailgun" | undefined;
     rateLimit?: {
         maxPerSecond?: number | undefined;
         maxPerMinute?: number | undefined;

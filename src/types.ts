@@ -21,6 +21,14 @@ export interface MessageInput {
   attachments?: Attachment[];
 }
 
+export interface GmailOAuth2Config {
+  clientId: string; // Google OAuth2 Client ID
+  clientSecret: string; // Google OAuth2 Client Secret
+  refreshToken: string; // OAuth2 Refresh Token
+  emailUser?: string; // Gmail email address (can fallback to root emailUser)
+  redirectUri?: string; // OAuth2 Redirect URI (default: "urn:ietf:wg:oauth:2.0:oob")
+}
+
 export interface Config {
   // Gmail SMTP Configuration
   smtpHost?: string; // Default: smtp.gmail.com
@@ -28,6 +36,9 @@ export interface Config {
   emailUser?: string; // Gmail email address
   emailPass?: string; // Gmail App Password
   emailFrom?: string; // Display name and email format: "Name <email@gmail.com>"
+
+  // Gmail OAuth2 Configuration
+  gmailOAuth2?: GmailOAuth2Config; // Gmail OAuth2 settings
 
   // SendGrid Configuration
   sendGridApiKey?: string; // SendGrid API Key
@@ -40,7 +51,7 @@ export interface Config {
   senderEmail?: string; // Will map to emailUser if provided
   senderPassword?: string; // Will map to emailPass if provided
 
-  provider?: "gmail" | "sendgrid" | "mailgun";
+  provider?: "gmail" | "gmail-oauth2" | "sendgrid" | "mailgun";
   rateLimit?: {
     maxPerSecond?: number;
     maxPerMinute?: number;
@@ -88,6 +99,14 @@ export const MessageInputSchema = z.object({
   attachments: z.array(AttachmentSchema).optional(),
 });
 
+export const GmailOAuth2ConfigSchema = z.object({
+  clientId: z.string().min(1, "Gmail OAuth2 clientId is required"),
+  clientSecret: z.string().min(1, "Gmail OAuth2 clientSecret is required"),
+  refreshToken: z.string().min(1, "Gmail OAuth2 refreshToken is required"),
+  emailUser: z.string().email("Invalid Gmail OAuth2 email user").optional(),
+  redirectUri: z.string().optional(),
+});
+
 export const ConfigSchema = z
   .object({
     // Gmail SMTP Configuration
@@ -96,6 +115,9 @@ export const ConfigSchema = z
     emailUser: z.string().email("Invalid email user").optional(),
     emailPass: z.string().min(1, "Email password is required").optional(),
     emailFrom: z.string().optional(),
+
+    // Gmail OAuth2 Configuration
+    gmailOAuth2: GmailOAuth2ConfigSchema.optional(),
 
     // SendGrid Configuration
     sendGridApiKey: z.string().optional(),
@@ -108,7 +130,9 @@ export const ConfigSchema = z
     senderEmail: z.string().email("Invalid sender email").optional(),
     senderPassword: z.string().min(1, "Sender password is required").optional(),
 
-    provider: z.enum(["gmail", "sendgrid", "mailgun"]).default("gmail"),
+    provider: z
+      .enum(["gmail", "gmail-oauth2", "sendgrid", "mailgun"])
+      .default("gmail"),
     rateLimit: z
       .object({
         maxPerSecond: z.number().positive().optional(),
@@ -134,6 +158,14 @@ export const ConfigSchema = z
           const hasNewFormat = data.emailUser && data.emailPass;
           const hasLegacyFormat = data.senderEmail && data.senderPassword;
           return hasNewFormat || hasLegacyFormat;
+        }
+
+        case "gmail-oauth2": {
+          // Gmail OAuth2 requires OAuth2 configuration
+          if (!data.gmailOAuth2) return false;
+          const { clientId, clientSecret, refreshToken } = data.gmailOAuth2;
+          const hasEmailUser = data.gmailOAuth2.emailUser || data.emailUser;
+          return clientId && clientSecret && refreshToken && hasEmailUser;
         }
 
         case "sendgrid": {

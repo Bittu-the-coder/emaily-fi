@@ -1,6 +1,6 @@
 {
   "name": "emaily-fi",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -15,13 +15,15 @@
     "email",
     "notifications",
     "gmail",
+    "oauth2",
+    "sendgrid",
     "smtp",
     "backend",
     "typescript"
   ],
   "author": "bittu-the-coder",
   "license": "MIT",
-  "description": "A powerful, production-ready TypeScript package for sending email notifications with Gmail SMTP, rate limiting, retry mechanisms, and queue system.",
+  "description": "A powerful, production-ready TypeScript package for sending email notifications with Gmail SMTP, Gmail OAuth2, SendGrid support, rate limiting, retry mechanisms, and queue system.",
   "homepage": "https://github.com/bittu-the-coder/emaily-fi#readme",
   "repository": {
     "type": "git",
@@ -41,6 +43,7 @@
   },
   "dependencies": {
     "dotenv": "^17.2.1",
+    "googleapis": "^154.1.0",
     "nodemailer": "^7.0.5",
     "p-queue": "^8.0.1",
     "zod": "^3.22.4"

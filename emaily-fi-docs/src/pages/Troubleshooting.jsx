@@ -405,9 +405,9 @@ ENABLE_QUEUE=true`,
   const getSeverityBg = (severity) => {
     switch (severity) {
       case "error":
-        return "bg-red-50 dark:bg-red-900 dark:bg-opacity-20 border-red-200 dark:border-red-800";
+        return "bg-gray-50 dark:bg-gray-900 dark:bg-opacity-20 border-red-200 dark:border-red-800";
       case "warning":
-        return "bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border-yellow-200 dark:border-yellow-800";
+        return "bg-gray-50 dark:bg-gray-900 dark:bg-opacity-20 border-gray-200 dark:border-gray-800";
       case "info":
         return "bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border-blue-200 dark:border-blue-800";
       default:
@@ -530,7 +530,7 @@ ENABLE_QUEUE=true`,
               {/* Solutions */}
               <div className="space-y-6">
                 <h4 className="font-semibold text-gray-900 dark:text-white">
-                  ✅ Solutions
+                  Solutions
                 </h4>
 
                 {item.solutions.map((solution, index) => (
@@ -651,7 +651,7 @@ async function runDiagnostic() {
 runDiagnostic().catch(console.error);`}
           </CodeBlock>
 
-          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <div className="mt-4 p-4 bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-lg">
             <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
               How to run the diagnostic:
             </h4>
@@ -668,7 +668,7 @@ npx ts-node diagnostic.ts`}
       </div>
 
       {/* Get More Help */}
-      <div className="bg-primary bg-opacity-5 dark:bg-primary dark:bg-opacity-10 rounded-xl p-8">
+      <div className="bg-gray-800 rounded-xl p-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           Still Need Help?
         </h2>
@@ -717,7 +717,7 @@ npx ts-node diagnostic.ts`}
           </a>
         </div>
 
-        <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+        <div className="mt-6 p-4 bg-gray-800 rounded-lg">
           <h3 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
             💡 When asking for help, please include:
           </h3>
@@ -725,7 +725,7 @@ npx ts-node diagnostic.ts`}
             <li>• Your emaily-fi version (check package.json)</li>
             <li>
               • Node.js version (run{" "}
-              <code className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded">
+              <code className="bg-gray-200 dark:bg-gray-800 px-1 rounded">
                 node --version
               </code>
               )

@@ -4,9 +4,12 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        'xs': '480px',
+        '3xl': '1600px',
+      },
       colors: {
         'primary': '#ef8354',
         'primary-hover': '#d76c3c',

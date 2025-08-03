@@ -14,6 +14,7 @@ const Examples = () => {
 
   const examples = [
     { id: "newsletter", name: "Newsletter System", icon: Users },
+    { id: "oauth2", name: "Gmail OAuth2 Setup", icon: ShoppingCart },
     { id: "ecommerce", name: "E-commerce Notifications", icon: ShoppingCart },
     { id: "user-auth", name: "User Authentication", icon: Bell },
     { id: "express", name: "Express.js Integration", icon: Code },
@@ -1438,15 +1439,15 @@ ENABLE_QUEUE=true`}
       )}
 
       {/* Best Practices */}
-      <div className="bg-primary bg-opacity-5 dark:bg-primary dark:bg-opacity-10 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          💡 Best Practices
+      <div className="bg-gray-800 rounded-xl p-8">
+        <h2 className="text-2xl flex items-center font-bold text-gray-900 dark:text-white mb-6">
+          <Lightbulb className="mr-2 mb-1" size={20} /> Best Practices
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <h3 className="font-semibold text-gray-900 dark:text-white">
-              🔒 Security
+              Security
             </h3>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
               <li>• Use environment variables for credentials</li>
@@ -1456,7 +1457,7 @@ ENABLE_QUEUE=true`}
             </ul>
 
             <h3 className="font-semibold text-gray-900 dark:text-white">
-              ⚡ Performance
+              Performance
             </h3>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
               <li>• Enable queue for bulk operations</li>
@@ -1468,7 +1469,7 @@ ENABLE_QUEUE=true`}
 
           <div className="space-y-4">
             <h3 className="font-semibold text-gray-900 dark:text-white">
-              🧪 Testing
+              Testing
             </h3>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
               <li>• Use mock services in tests</li>
@@ -1478,7 +1479,7 @@ ENABLE_QUEUE=true`}
             </ul>
 
             <h3 className="font-semibold text-gray-900 dark:text-white">
-              📊 Monitoring
+              Monitoring
             </h3>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
               <li>• Log all email attempts and results</li>

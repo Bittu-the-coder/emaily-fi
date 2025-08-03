@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import {
-  oneDark,
-  oneLight,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Copy, Check } from "lucide-react";
 
 const CodeBlock = ({
   children,
   language = "typescript",
   showLineNumbers = false,
-  darkMode = false,
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -36,7 +32,7 @@ const CodeBlock = ({
 
       <SyntaxHighlighter
         language={language}
-        style={darkMode ? oneDark : oneLight}
+        style={oneDark}
         showLineNumbers={showLineNumbers}
         customStyle={{
           margin: 0,

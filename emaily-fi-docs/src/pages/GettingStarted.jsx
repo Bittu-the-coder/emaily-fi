@@ -215,10 +215,10 @@ const result = await notifier.sendToOne(
 );
 
 if (result.success) {
-  console.log("✅ Welcome email sent successfully!");
+  console.log("Welcome email sent successfully!");
   console.log("Message ID:", result.messageId);
 } else {
-  console.error("❌ Failed to send email:", result.error);
+  console.error("Failed to send email:", result.error);
 }`}
           </CodeBlock>
         </div>
@@ -230,11 +230,11 @@ if (result.success) {
           Alternative: Direct Configuration
         </h2>
 
-        <div className="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 rounded-xl p-6 border border-yellow-200 dark:border-yellow-800">
+        <div className="bg-gray-800 rounded-xl p-6 border">
           <p className="text-yellow-800 dark:text-yellow-200 mb-4">
-            <strong>⚠️ Security Note:</strong> For production applications,
-            always use environment variables. This direct configuration approach
-            is only recommended for development and testing.
+            <strong> Security Note:</strong> For production applications, always
+            use environment variables. This direct configuration approach is
+            only recommended for development and testing.
           </p>
 
           <CodeBlock language="typescript">
@@ -261,9 +261,9 @@ await notifier.initialize();`}
       </div>
 
       {/* Next Steps */}
-      <div className="bg-primary bg-opacity-5 dark:bg-primary dark:bg-opacity-10 rounded-xl p-8">
+      <div className="bg-gray-800 rounded-xl p-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          🎉 Congratulations!
+          Congratulations!
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6">
           You've successfully set up emaily-fi and sent your first email. Here's

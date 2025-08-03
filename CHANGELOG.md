@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-08-03
+
+### Added
+
+- 🔒 **Gmail OAuth2 Provider** - New secure authentication method for Gmail
+  - Added `GmailOAuth2Provider` class with automatic token refresh
+  - Helper methods for OAuth2 setup: `generateAuthUrl()` and `getRefreshToken()`
+  - Support for `gmailOAuth2` configuration in Config interface
+  - Comprehensive error handling and retry logic for OAuth2
+- 📚 **Enhanced Documentation Website** - Complete documentation overhaul
+  - New dedicated documentation website at https://emaily-fi.vercel.app/
+  - Gmail OAuth2 setup guide with step-by-step instructions
+  - Improved API reference with OAuth2 helper methods
+  - Updated configuration examples for all providers
+- 🧪 **Comprehensive Test Coverage** - Added tests for OAuth2 functionality
+  - OAuth2 provider validation tests
+  - Configuration validation for OAuth2 credentials
+  - Static helper method tests
+
+### Changed
+
+- 🔄 **Provider Support** - Updated provider enum to include "gmail-oauth2"
+- 📖 **Documentation Structure** - Streamlined README to focus on documentation website
+- 🏗️ **Type System** - Enhanced TypeScript interfaces for OAuth2 support
+- 🎨 **Website UI** - Improved dark theme and responsive design
+
+### Updated
+
+- 📦 **Dependencies** - Added `googleapis` package for OAuth2 functionality
+- 🏷️ **Package Keywords** - Added "oauth2" and "sendgrid" keywords
+- 📄 **Package Description** - Updated to mention OAuth2 and SendGrid support
+
 ## [1.0.1] - 2025-07-28
 
 ### Fixed

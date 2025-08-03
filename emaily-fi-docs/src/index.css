@@ -3,31 +3,7 @@
 :root {
   font-family: "Inter", system-ui, sans-serif;
 
-  /* Light theme colors based on style.json */
-  --color-background: #ffffff;
-  --color-text: #2d3142;
-  --color-primary: #ef8354;
-  --color-secondary: #4f5d75;
-  --color-muted: #bfc0c0;
-  --color-header-bg: #2d3142;
-  --color-sidebar-bg: #4f5d75;
-  --color-card-bg: #ffffff;
-  --color-border: #bfc0c0;
-  --color-link: #ef8354;
-  --color-link-hover: #d76c3c;
-  --color-button-bg: #ef8354;
-  --color-button-text: #ffffff;
-  --color-button-hover: #d76c3c;
-  --color-code-bg: #f4f4f4;
-  --color-code-text: #2d3142;
-  --color-input-bg: #ffffff;
-  --color-input-border: #bfc0c0;
-  --color-input-text: #2d3142;
-  --color-input-focus-border: #ef8354;
-}
-
-.dark {
-  /* Dark theme colors */
+  /* Dark theme colors - now the only theme */
   --color-background: #1a1b23;
   --color-text: #e5e7eb;
   --color-primary: #ef8354;
@@ -74,6 +50,137 @@
     color 0.2s ease;
 }
 
+/* Responsive utilities */
+.full-width-content {
+  width: 100%;
+  max-width: none;
+}
+
+.responsive-container {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: none;
+}
+
+@media (min-width: 640px) {
+  .responsive-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .responsive-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .responsive-container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Mobile-first responsive design */
+.mobile-full {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+@media (min-width: 1024px) {
+  .mobile-full {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Content area responsive adjustments */
+.content-area {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure main content takes full available width */
+main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Mobile sidebar overlay fix */
+@media (max-width: 1023px) {
+  main {
+    width: 100vw;
+  }
+}
+
+/* Ensure no gaps on mobile */
+.mobile-no-gap {
+  margin: 0;
+  padding: 0;
+}
+
+/* Header height consistency */
+header {
+  height: 64px !important;
+}
+
+/* Sidebar positioning fix */
+aside {
+  top: 64px !important;
+}
+
+/* Mobile sidebar close button positioning */
+@media (max-width: 1023px) {
+  aside .mobile-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 60;
+  }
+}
+
+/* Prevent body scroll when mobile sidebar is open */
+body.sidebar-open {
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  body.sidebar-open {
+    overflow: auto;
+  }
+}
+
+/* Grid responsive utilities */
+.responsive-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
 /* Custom utilities */
 .text-primary {
   color: var(--color-primary) !important;
@@ -88,10 +195,6 @@
 }
 
 .shadow-card {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.dark .shadow-card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -110,41 +213,21 @@
   color: #ffffff;
 }
 
-.dark .bg-primary-strong {
-  background-color: var(--color-primary);
-  color: #ffffff;
-}
-
 /* Sidebar active state visibility fix */
 .sidebar-active {
-  color: #d76c3c !important;
-  font-weight: 700 !important;
-}
-
-.dark .sidebar-active {
   color: #ffa366 !important;
+  font-weight: 700 !important;
 }
 
 /* Ensure sidebar active state overrides everything */
 nav a.sidebar-active,
 nav a .sidebar-active {
-  color: #d76c3c !important;
-}
-
-.dark nav a.sidebar-active,
-.dark nav a .sidebar-active {
   color: #ffa366 !important;
 }
 
 /* Force active sidebar link styling */
 aside nav a.sidebar-active,
 aside nav a.sidebar-active * {
-  color: #d76c3c !important;
-  font-weight: 700 !important;
-}
-
-.dark aside nav a.sidebar-active,
-.dark aside nav a.sidebar-active * {
   color: #ffa366 !important;
   font-weight: 700 !important;
 }

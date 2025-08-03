@@ -12,52 +12,41 @@ import Migration from "./pages/Migration";
 import Troubleshooting from "./pages/Troubleshooting";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setDarkMode(true);
-      document.documentElement.classList.add("dark");
-    }
+    // Always apply dark mode
+    document.documentElement.classList.add("dark");
   }, []);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    if (!darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  };
 
   return (
     <Router>
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-        <Header
-          darkMode={darkMode}
-          toggleDarkMode={toggleDarkMode}
-          toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
-        />
+      <div className="min-h-screen bg-gray-900">
+        <Header toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
         <div className="flex">
           <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-          <main className="flex-1 lg:ml-64 pt-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/getting-started" element={<GettingStarted />} />
-                <Route path="/installation" element={<Installation />} />
-                <Route path="/configuration" element={<Configuration />} />
-                <Route path="/api-reference" element={<APIReference />} />
-                <Route path="/examples" element={<Examples />} />
-                <Route path="/migration" element={<Migration />} />
-                <Route path="/troubleshooting" element={<Troubleshooting />} />
-              </Routes>
+          <main
+            className="flex-1 lg:ml-64 min-h-screen"
+            style={{ paddingTop: "64px" }}
+          >
+            <div className="w-full h-full">
+              <div className="responsive-container py-6 md:py-8 lg:py-12">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/getting-started" element={<GettingStarted />} />
+                  <Route path="/installation" element={<Installation />} />
+                  <Route path="/configuration" element={<Configuration />} />
+                  <Route path="/api-reference" element={<APIReference />} />
+                  <Route path="/examples" element={<Examples />} />
+                  <Route path="/migration" element={<Migration />} />
+                  <Route
+                    path="/troubleshooting"
+                    element={<Troubleshooting />}
+                  />
+                </Routes>
+              </div>
             </div>
           </main>
         </div>
