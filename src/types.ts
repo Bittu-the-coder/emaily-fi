@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Buffer } from "buffer";
 
 export interface User {
   name: string;
@@ -28,6 +29,13 @@ export interface Config {
   emailPass?: string; // Gmail App Password
   emailFrom?: string; // Display name and email format: "Name <email@gmail.com>"
 
+  // SendGrid Configuration
+  sendGridApiKey?: string; // SendGrid API Key
+
+  // Mailgun Configuration (future implementation)
+  mailgunApiKey?: string; // Mailgun API Key
+  mailgunDomain?: string; // Mailgun Domain
+
   // Legacy support (deprecated)
   senderEmail?: string; // Will map to emailUser if provided
   senderPassword?: string; // Will map to emailPass if provided
@@ -43,7 +51,7 @@ export interface Config {
     retryDelay?: number;
   };
   enableQueue?: boolean;
-  logger?: (message: string, level: "info" | "warn" | "error") => void;
+  logger?: (_message: string, _level: "info" | "warn" | "error") => void;
 }
 
 export interface SendResult {
@@ -89,6 +97,13 @@ export const ConfigSchema = z
     emailPass: z.string().min(1, "Email password is required").optional(),
     emailFrom: z.string().optional(),
 
+    // SendGrid Configuration
+    sendGridApiKey: z.string().optional(),
+
+    // Mailgun Configuration (future implementation)
+    mailgunApiKey: z.string().optional(),
+    mailgunDomain: z.string().optional(),
+
     // Legacy support (deprecated but still functional)
     senderEmail: z.string().email("Invalid sender email").optional(),
     senderPassword: z.string().min(1, "Sender password is required").optional(),
@@ -112,14 +127,31 @@ export const ConfigSchema = z
   })
   .refine(
     (data) => {
-      // Either new format (emailUser + emailPass) or legacy format (senderEmail + senderPassword) must be provided
-      const hasNewFormat = data.emailUser && data.emailPass;
-      const hasLegacyFormat = data.senderEmail && data.senderPassword;
-      return hasNewFormat || hasLegacyFormat;
+      // Validate based on provider type
+      switch (data.provider) {
+        case "gmail": {
+          // Either new format (emailUser + emailPass) or legacy format (senderEmail + senderPassword) must be provided
+          const hasNewFormat = data.emailUser && data.emailPass;
+          const hasLegacyFormat = data.senderEmail && data.senderPassword;
+          return hasNewFormat || hasLegacyFormat;
+        }
+
+        case "sendgrid": {
+          // SendGrid requires API key and emailFrom
+          return data.sendGridApiKey && data.emailFrom;
+        }
+
+        case "mailgun": {
+          // Mailgun not implemented yet
+          return false;
+        }
+
+        default:
+          return false;
+      }
     },
     {
-      message:
-        "Either (emailUser + emailPass) or (senderEmail + senderPassword) must be provided",
+      message: "Invalid configuration for the selected provider",
     }
   )
   .transform((data) => {

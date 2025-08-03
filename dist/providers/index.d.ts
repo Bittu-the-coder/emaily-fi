@@ -1,7 +1,8 @@
 import { EmailProvider } from "./base";
 import { GmailProvider } from "./gmail";
+import { SendGridProvider } from "./sendgrid";
 import { Config } from "../types";
 export declare class ProviderFactory {
     static createProvider(config: Config): EmailProvider;
 }
-export { EmailProvider, GmailProvider };
+export { EmailProvider, GmailProvider, SendGridProvider };

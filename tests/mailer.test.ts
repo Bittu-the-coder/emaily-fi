@@ -30,9 +30,9 @@ const config: Config = {
   // Using new Gmail SMTP format
   smtpHost: "smtp.gmail.com",
   smtpPort: 587,
-  emailUser: "<username>@gmail.com",
+  emailUser: "test@gmail.com",
   emailPass: "fakepassword",
-  emailFrom: "Test Sender <username>@gmail.com>",
+  emailFrom: "Test Sender <test@gmail.com>",
   enableQueue: false,
   rateLimit: {
     maxPerSecond: 2,
@@ -181,7 +181,7 @@ describe("EmailNotifier", () => {
       const result = await notifier.sendFiltered(users, message, filter);
 
       expect(result.totalSent).toBe(1);
-      expect(result.results[0].recipient).toBe("bittuatwork169@gmail.com");
+      expect(result.results[0].recipient).toBe("test@gmail.com"); // Alice's email
     });
 
     it("should handle no matching users", async () => {

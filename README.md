@@ -62,14 +62,27 @@ pnpm add emaily-fi
 ```typescript
 import { EmailNotifier } from "emaily-fi";
 
+// Option A: Traditional Gmail SMTP (requires app password)
 const notifier = new EmailNotifier({
   emailUser: "your-email@gmail.com",
   emailPass: "your-app-password", // Gmail App Password
   rateLimit: { maxPerSecond: 1 },
 });
 
+// Option B: Gmail OAuth (recommended for web apps)
+const notifier = new EmailNotifier({
+  provider: "gmail-oauth",
+  emailUser: "your-email@gmail.com",
+  clientId: "your-google-client-id",
+  clientSecret: "your-google-client-secret",
+  refreshToken: "your-refresh-token",
+  rateLimit: { maxPerSecond: 1 },
+});
+
 await notifier.initialize();
 ```
+
+> 💡 **For web applications**: Use OAuth providers to avoid asking users for passwords. See [OAuth Setup Guide](./docs/OAUTH_SETUP.md) for step-by-step instructions.
 
 ### 2. Send Your First Email
 
@@ -217,6 +230,53 @@ app.post("/api/send-notification", async (req, res) => {
 ```
 
 ## ⚙️ Configuration
+
+### Email Provider Options
+
+**emaily-fi** now supports multiple email providers for enhanced security and flexibility:
+
+#### 1. Gmail OAuth2 (Recommended - Most Secure)
+
+No app passwords needed! Users authenticate securely through Google OAuth.
+
+```typescript
+const notifier = new EmailNotifier({
+  provider: "gmail-oauth",
+  emailUser: "your-email@gmail.com",
+  emailFrom: "Your Name <your-email@gmail.com>",
+  clientId: "your-google-client-id.apps.googleusercontent.com",
+  clientSecret: "your-google-client-secret",
+  refreshToken: "your-refresh-token",
+  // accessToken is optional - will be refreshed automatically
+});
+```
+
+#### 2. SendGrid (Professional Email Service)
+
+Reliable, scalable email delivery service.
+
+```typescript
+const notifier = new EmailNotifier({
+  provider: "sendgrid",
+  sendGridApiKey: "SG.your-sendgrid-api-key",
+  emailFrom: "verified-sender@yourdomain.com", // Must be verified in SendGrid
+});
+```
+
+#### 3. Gmail SMTP (Traditional - Requires App Password)
+
+Classic SMTP authentication with Gmail App Passwords.
+
+```typescript
+const notifier = new EmailNotifier({
+  provider: "gmail", // or omit for default
+  emailUser: "your-email@gmail.com",
+  emailPass: "your-16-char-app-password",
+  emailFrom: "Your Name <your-email@gmail.com>",
+});
+```
+
+> 📘 **For web applications**: Use Gmail OAuth or SendGrid to avoid asking users for their passwords. See our [OAuth Setup Guide](./docs/OAUTH_SETUP.md) for detailed instructions.
 
 ### Complete Configuration Options
 

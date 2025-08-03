@@ -1,5 +1,6 @@
 import { EmailProvider } from "./base";
 import { GmailProvider } from "./gmail";
+import { SendGridProvider } from "./sendgrid";
 import { Config } from "../types";
 
 export class ProviderFactory {
@@ -8,7 +9,7 @@ export class ProviderFactory {
       case "gmail":
         return new GmailProvider(config);
       case "sendgrid":
-        throw new Error("SendGrid provider not yet implemented");
+        return new SendGridProvider(config);
       case "mailgun":
         throw new Error("Mailgun provider not yet implemented");
       default:
@@ -17,4 +18,4 @@ export class ProviderFactory {
   }
 }
 
-export { EmailProvider, GmailProvider };
+export { EmailProvider, GmailProvider, SendGridProvider };

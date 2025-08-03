@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Buffer } from "buffer";
 export interface User {
     name: string;
     email: string;
@@ -22,6 +23,9 @@ export interface Config {
     emailUser?: string;
     emailPass?: string;
     emailFrom?: string;
+    sendGridApiKey?: string;
+    mailgunApiKey?: string;
+    mailgunDomain?: string;
     senderEmail?: string;
     senderPassword?: string;
     provider?: "gmail" | "sendgrid" | "mailgun";
@@ -35,7 +39,7 @@ export interface Config {
         retryDelay?: number;
     };
     enableQueue?: boolean;
-    logger?: (message: string, level: "info" | "warn" | "error") => void;
+    logger?: (_message: string, _level: "info" | "warn" | "error") => void;
 }
 export interface SendResult {
     success: boolean;
@@ -119,6 +123,9 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     emailUser: z.ZodOptional<z.ZodString>;
     emailPass: z.ZodOptional<z.ZodString>;
     emailFrom: z.ZodOptional<z.ZodString>;
+    sendGridApiKey: z.ZodOptional<z.ZodString>;
+    mailgunApiKey: z.ZodOptional<z.ZodString>;
+    mailgunDomain: z.ZodOptional<z.ZodString>;
     senderEmail: z.ZodOptional<z.ZodString>;
     senderPassword: z.ZodOptional<z.ZodString>;
     provider: z.ZodDefault<z.ZodEnum<["gmail", "sendgrid", "mailgun"]>>;
@@ -155,6 +162,9 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    sendGridApiKey?: string | undefined;
+    mailgunApiKey?: string | undefined;
+    mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
     rateLimit?: {
@@ -173,6 +183,9 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    sendGridApiKey?: string | undefined;
+    mailgunApiKey?: string | undefined;
+    mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
     provider?: "gmail" | "sendgrid" | "mailgun" | undefined;
@@ -195,6 +208,9 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    sendGridApiKey?: string | undefined;
+    mailgunApiKey?: string | undefined;
+    mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
     rateLimit?: {
@@ -213,6 +229,9 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    sendGridApiKey?: string | undefined;
+    mailgunApiKey?: string | undefined;
+    mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
     provider?: "gmail" | "sendgrid" | "mailgun" | undefined;
@@ -235,6 +254,9 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    sendGridApiKey?: string | undefined;
+    mailgunApiKey?: string | undefined;
+    mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
     rateLimit?: {
@@ -253,6 +275,9 @@ export declare const ConfigSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     emailUser?: string | undefined;
     emailPass?: string | undefined;
     emailFrom?: string | undefined;
+    sendGridApiKey?: string | undefined;
+    mailgunApiKey?: string | undefined;
+    mailgunDomain?: string | undefined;
     senderEmail?: string | undefined;
     senderPassword?: string | undefined;
     provider?: "gmail" | "sendgrid" | "mailgun" | undefined;
