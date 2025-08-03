@@ -28,11 +28,11 @@ const Configuration = () => {
           <span className="text-white font-medium">Configuration Guide</span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">
           Configure emaily-fi
         </h1>
 
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Comprehensive configuration options for production-ready email
           notifications. Choose from multiple providers and customize every
           aspect of your email system.
@@ -41,7 +41,7 @@ const Configuration = () => {
 
       {/* Configuration Tabs */}
       <div className="space-y-8">
-        <div className="border-b border-gray-200 dark:border-gray-700">
+        <div className="border-b border-gray-700">
           <nav className="flex space-x-8">
             {configTabs.map((tab) => {
               const Icon = tab.icon;
@@ -52,7 +52,7 @@ const Configuration = () => {
                   className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                     activeTab === tab.id
                       ? "border-primary text-white"
-                      : "border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                      : "border-transparent text-gray-400 hover:text-gray-300"
                   }`}
                 >
                   <Icon size={18} />
@@ -67,15 +67,15 @@ const Configuration = () => {
         {activeTab === "basic" && (
           <div className="space-y-8">
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold text-white">
                 Basic Configuration
               </h2>
 
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">
                   Quick Start Configuration
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-300 mb-4">
                   The simplest way to get started with Gmail SMTP:
                 </p>
 
@@ -95,17 +95,14 @@ await notifier.initialize();`}
                 </CodeBlock>
               </div>
 
-              <div className="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
+              <div className="bg-yellow-900  border border-yellow-800 rounded-lg p-6">
                 <div className="flex items-start space-x-3">
-                  <AlertTriangle
-                    className="text-yellow-600 dark:text-yellow-400 mt-0.5"
-                    size={20}
-                  />
+                  <AlertTriangle className="text-yellow-400 mt-0.5" size={20} />
                   <div>
-                    <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+                    <h4 className="font-semibold text-yellow-200 mb-2">
                       Gmail App Password Required
                     </h4>
-                    <p className="text-yellow-700 dark:text-yellow-300">
+                    <p className="text-yellow-300">
                       You need to enable 2-Factor Authentication on your Gmail
                       account and generate an App Password. Regular Gmail
                       passwords won't work for security reasons.
@@ -121,25 +118,23 @@ await notifier.initialize();`}
         {activeTab === "providers" && (
           <div className="space-y-8">
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Email Providers
-              </h2>
+              <h2 className="text-3xl font-bold text-white">Email Providers</h2>
 
               {/* Gmail OAuth */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-green-900 rounded-lg flex items-center justify-center">
                     <CheckCircle className="text-green-600" size={18} />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-white">
                     Gmail OAuth2 (Recommended)
                   </h3>
-                  <span className="px-3 py-1 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-sm rounded-full">
+                  <span className="px-3 py-1 bg-green-900 text-green-200 text-sm rounded-full">
                     Most Secure
                   </span>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-300 mb-4">
                   No app passwords needed! Users authenticate securely through
                   Google OAuth.
                 </p>
@@ -158,17 +153,17 @@ await notifier.initialize();`}
                 </CodeBlock>
 
                 {/* OAuth2 Setup Steps */}
-                <div className="mt-6 p-4 bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-lg">
-                  <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-3">
+                <div className="mt-6 p-4 bg-gray-800 border border-blue-800 rounded-lg">
+                  <h4 className="font-semibold text-blue-200 mb-3">
                     OAuth2 Setup Guide
                   </h4>
 
                   <div className="space-y-4 text-sm">
                     <div>
-                      <h5 className="font-medium text-blue-800 dark:text-blue-300">
+                      <h5 className="font-medium text-blue-300">
                         1. Create Google Cloud Project
                       </h5>
-                      <p className="text-blue-700 dark:text-blue-300">
+                      <p className="text-blue-300">
                         • Go to{" "}
                         <a
                           href="https://console.cloud.google.com/"
@@ -186,10 +181,10 @@ await notifier.initialize();`}
                     </div>
 
                     <div>
-                      <h5 className="font-medium text-blue-800 dark:text-blue-300">
+                      <h5 className="font-medium text-blue-300">
                         2. Create OAuth2 Credentials
                       </h5>
-                      <p className="text-blue-700 dark:text-blue-300">
+                      <p className="text-blue-300">
                         • Go to APIs & Services → Credentials
                         <br />
                         • Click "Create Credentials" → "OAuth client ID"
@@ -201,10 +196,10 @@ await notifier.initialize();`}
                     </div>
 
                     <div>
-                      <h5 className="font-medium text-blue-800 dark:text-blue-300">
+                      <h5 className="font-medium text-blue-300">
                         3. Generate Refresh Token
                       </h5>
-                      <div className="bg-white dark:bg-gray-800 p-3 rounded border mt-2">
+                      <div className="bg-gray-800 p-3 rounded border mt-2">
                         <CodeBlock language="typescript">
                           {`import { GmailOAuth2Provider } from "emaily-fi";
 
@@ -223,10 +218,10 @@ const refreshToken = await GmailOAuth2Provider.getRefreshToken(
                     </div>
 
                     <div>
-                      <h5 className="font-medium text-blue-800 dark:text-blue-300">
+                      <h5 className="font-medium text-blue-300">
                         4. Environment Variables
                       </h5>
-                      <div className="bg-white dark:bg-gray-800 p-3 rounded border mt-2">
+                      <div className="bg-gray-800 p-3 rounded border mt-2">
                         <CodeBlock language="bash">
                           {`GMAIL_OAUTH2_CLIENT_ID=your-client-id.apps.googleusercontent.com
 GMAIL_OAUTH2_CLIENT_SECRET=your-client-secret
@@ -241,20 +236,18 @@ EMAIL_FROM=Your Name <your-email@gmail.com>`}
               </div>
 
               {/* SendGrid */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center">
                     <Shield className="text-blue-600" size={18} />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    SendGrid
-                  </h3>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm rounded-full">
+                  <h3 className="text-xl font-semibold text-white">SendGrid</h3>
+                  <span className="px-3 py-1 bg-blue-900 text-blue-200 text-sm rounded-full">
                     Professional
                   </span>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-300 mb-4">
                   Reliable, scalable email delivery service with advanced
                   analytics.
                 </p>
@@ -269,20 +262,20 @@ EMAIL_FROM=Your Name <your-email@gmail.com>`}
               </div>
 
               {/* Gmail SMTP */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-orange-900 rounded-lg flex items-center justify-center">
                     <Settings className="text-orange-600" size={18} />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-white">
                     Gmail SMTP (Traditional)
                   </h3>
-                  <span className="px-3 py-1 bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200 text-sm rounded-full">
+                  <span className="px-3 py-1  bg-orange-900 text-orange-200 text-sm rounded-full">
                     App Password Required
                   </span>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-300 mb-4">
                   Classic SMTP authentication with Gmail App Passwords.
                 </p>
 
@@ -303,13 +296,13 @@ EMAIL_FROM=Your Name <your-email@gmail.com>`}
         {activeTab === "advanced" && (
           <div className="space-y-8">
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold text-white">
                 Advanced Configuration
               </h2>
 
               {/* Complete Configuration */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">
                   Complete Configuration Options
                 </h3>
 
@@ -350,15 +343,15 @@ EMAIL_FROM=Your Name <your-email@gmail.com>`}
               </div>
 
               {/* Rate Limiting */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                 <div className="flex items-center space-x-3 mb-4">
                   <Clock className="text-white" size={20} />
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-white">
                     Rate Limiting Configuration
                   </h3>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-300 mb-4">
                   Prevent provider blocks and ensure reliable delivery with
                   smart rate limiting:
                 </p>
@@ -388,15 +381,15 @@ rateLimit: {
               </div>
 
               {/* Queue System */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                 <div className="flex items-center space-x-3 mb-4">
                   <Database className="text-white" size={20} />
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-white">
                     Queue System
                   </h3>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-300 mb-4">
                   Enable the queue system for high-volume email sending:
                 </p>
 
@@ -424,21 +417,18 @@ notifier.resumeQueue(); // Resume processing`}
         {activeTab === "environment" && (
           <div className="space-y-8">
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold text-white">
                 Environment Variables
               </h2>
 
-              <div className="bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border border-green-200 dark:border-green-800 rounded-lg p-6">
+              <div className="bg-green-900  border border-green-800 rounded-lg p-6">
                 <div className="flex items-start space-x-3">
-                  <CheckCircle
-                    className="text-green-600 dark:text-green-400 mt-0.5"
-                    size={20}
-                  />
+                  <CheckCircle className="text-green-400 mt-0.5" size={20} />
                   <div>
-                    <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">
+                    <h4 className="font-semibold text-green-200 mb-2">
                       Recommended for Production
                     </h4>
-                    <p className="text-green-700 dark:text-green-300">
+                    <p className="text-green-300">
                       Using environment variables keeps your credentials secure
                       and makes deployment easier.
                     </p>
@@ -447,8 +437,8 @@ notifier.resumeQueue(); // Resume processing`}
               </div>
 
               {/* .env file */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">
                   Environment Variables (.env file)
                 </h3>
 
@@ -472,8 +462,8 @@ ENABLE_QUEUE=true`}
               </div>
 
               {/* Using env config */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">
                   Using Environment Configuration
                 </h3>
 
@@ -498,14 +488,14 @@ const notifier = new EmailNotifier({
               </div>
 
               {/* Different environments */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">
                   Environment-Specific Configuration
                 </h3>
 
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    <h4 className="font-semibold text-white mb-2">
                       Development
                     </h4>
                     <CodeBlock language="bash">
@@ -519,7 +509,7 @@ LOG_LEVEL=debug`}
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    <h4 className="font-semibold text-white mb-2">
                       Production
                     </h4>
                     <CodeBlock language="bash">
@@ -541,16 +531,14 @@ LOG_LEVEL=info`}
 
       {/* Configuration Best Practices */}
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-3xl font-bold text-white">
           Configuration Best Practices
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-              Security
-            </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+            <h3 className="text-lg font-semibold text-white mb-3">Security</h3>
+            <ul className="space-y-2 text-gray-300">
               <li>• Never commit credentials to version control</li>
               <li>• Use environment variables for sensitive data</li>
               <li>• Rotate app passwords regularly</li>
@@ -558,11 +546,11 @@ LOG_LEVEL=info`}
             </ul>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+            <h3 className="text-lg font-semibold text-white mb-3">
               Performance
             </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-2 text-gray-300">
               <li>• Enable queue for bulk operations</li>
               <li>• Set appropriate rate limits</li>
               <li>• Use connection pooling</li>
@@ -570,11 +558,11 @@ LOG_LEVEL=info`}
             </ul>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+            <h3 className="text-lg font-semibold text-white mb-3">
               Reliability
             </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-2 text-gray-300">
               <li>• Configure retry mechanisms</li>
               <li>• Set up error logging</li>
               <li>• Test with small batches first</li>
@@ -582,11 +570,11 @@ LOG_LEVEL=info`}
             </ul>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+            <h3 className="text-lg font-semibold text-white mb-3">
               Monitoring
             </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+            <ul className="space-y-2 text-gray-300">
               <li>• Implement custom logging</li>
               <li>• Track success/failure rates</li>
               <li>• Monitor queue performance</li>

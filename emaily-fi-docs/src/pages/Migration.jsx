@@ -27,11 +27,11 @@ const Migration = () => {
           <span className="text-white font-medium">Migration Guide</span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">
           Migrate to emaily-fi
         </h1>
 
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Step-by-step guides to migrate from other email libraries to
           emaily-fi. Minimize downtime and leverage improved features with our
           migration tools.
@@ -39,97 +39,71 @@ const Migration = () => {
       </div>
 
       {/* Migration Benefits */}
-      <div className="bg-gray-800 border border-green-200 dark:border-green-800 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-green-800 dark:text-green-200 mb-4">
+      <div className="bg-gray-800 border border-green-800 rounded-xl p-8">
+        <h2 className="text-2xl font-bold text-green-200 mb-4">
           Why Migrate to emaily-fi?
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="flex items-start space-x-3">
-            <CheckCircle
-              className="text-green-600 dark:text-green-400 mt-1"
-              size={20}
-            />
+            <CheckCircle className="text-green-400 mt-1" size={20} />
             <div>
-              <h3 className="font-semibold text-green-800 dark:text-green-200">
-                Simplified API
-              </h3>
-              <p className="text-green-700 dark:text-green-300 text-sm">
+              <h3 className="font-semibold text-green-200">Simplified API</h3>
+              <p className="text-green-300 text-sm">
                 Intuitive methods for common email patterns
               </p>
             </div>
           </div>
 
           <div className="flex items-start space-x-3">
-            <CheckCircle
-              className="text-green-600 dark:text-green-400 mt-1"
-              size={20}
-            />
+            <CheckCircle className="text-green-400 mt-1" size={20} />
             <div>
-              <h3 className="font-semibold text-green-800 dark:text-green-200">
+              <h3 className="font-semibold text-green-200">
                 Built-in Rate Limiting
               </h3>
-              <p className="text-green-700 dark:text-green-300 text-sm">
+              <p className="text-green-300 text-sm">
                 Prevent provider blocks automatically
               </p>
             </div>
           </div>
 
           <div className="flex items-start space-x-3">
-            <CheckCircle
-              className="text-green-600 dark:text-green-400 mt-1"
-              size={20}
-            />
+            <CheckCircle className="text-green-400 mt-1" size={20} />
             <div>
-              <h3 className="font-semibold text-green-800 dark:text-green-200">
-                TypeScript First
-              </h3>
-              <p className="text-green-700 dark:text-green-300 text-sm">
+              <h3 className="font-semibold text-green-200">TypeScript First</h3>
+              <p className="text-green-300 text-sm">
                 Complete type safety and IntelliSense
               </p>
             </div>
           </div>
 
           <div className="flex items-start space-x-3">
-            <CheckCircle
-              className="text-green-600 dark:text-green-400 mt-1"
-              size={20}
-            />
+            <CheckCircle className="text-green-400 mt-1" size={20} />
             <div>
-              <h3 className="font-semibold text-green-800 dark:text-green-200">
-                Queue System
-              </h3>
-              <p className="text-green-700 dark:text-green-300 text-sm">
+              <h3 className="font-semibold text-green-200">Queue System</h3>
+              <p className="text-green-300 text-sm">
                 Handle bulk operations efficiently
               </p>
             </div>
           </div>
 
           <div className="flex items-start space-x-3">
-            <CheckCircle
-              className="text-green-600 dark:text-green-400 mt-1"
-              size={20}
-            />
+            <CheckCircle className="text-green-400 mt-1" size={20} />
             <div>
-              <h3 className="font-semibold text-green-800 dark:text-green-200">
-                Retry Logic
-              </h3>
-              <p className="text-green-700 dark:text-green-300 text-sm">
+              <h3 className="font-semibold text-green-200">Retry Logic</h3>
+              <p className="text-green-300 text-sm">
                 Automatic retries with exponential backoff
               </p>
             </div>
           </div>
 
           <div className="flex items-start space-x-3">
-            <CheckCircle
-              className="text-green-600 dark:text-green-400 mt-1"
-              size={20}
-            />
+            <CheckCircle className="text-green-400 mt-1" size={20} />
             <div>
-              <h3 className="font-semibold text-green-800 dark:text-green-200">
+              <h3 className="font-semibold text-green-200">
                 Multiple Providers
               </h3>
-              <p className="text-green-700 dark:text-green-300 text-sm">
+              <p className="text-green-300 text-sm">
                 Gmail, SendGrid, and more with unified API
               </p>
             </div>
@@ -139,7 +113,7 @@ const Migration = () => {
 
       {/* Migration Tabs */}
       <div className="space-y-8">
-        <div className="border-b border-gray-200 dark:border-gray-700">
+        <div className="border-b border-gray-700">
           <nav className="flex space-x-8">
             {migrationGuides.map((guide) => {
               const Icon = guide.icon;
@@ -150,7 +124,7 @@ const Migration = () => {
                   className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                     activeTab === guide.id
                       ? "border-primary text-white"
-                      : "border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                      : "border-transparent text-gray-400 hover:text-gray-300"
                   }`}
                 >
                   <Icon size={18} />
@@ -164,7 +138,7 @@ const Migration = () => {
         {/* Nodemailer Migration */}
         {activeTab === "nodemailer" && (
           <div className="space-y-8">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-white">
               Migrating from Nodemailer
             </h2>
 
@@ -172,8 +146,8 @@ const Migration = () => {
               {/* Before and After */}
               <div className="grid grid-cols-1 gap-6">
                 {/* Before */}
-                <div className="bg-gray-800 border border-red-200 dark:border-red-800 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">
+                <div className="bg-gray-800 border border-red-800 rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-red-200 mb-4">
                     Before (Nodemailer)
                   </h3>
 
@@ -222,14 +196,12 @@ async function sendBulkEmails(recipients: string[], subject: string, html: strin
                 </div>
 
                 {/* After */}
-                <div className="bg-gray-800 border border-green-200 dark:border-green-800 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">
+                <div className="bg-gray-800 border border-green-800 rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-green-200 mb-4">
                     After (emaily-fi)
                   </h3>
-
                   <CodeBlock language="typescript">
                     {`import { EmailNotifier, createValidatedConfigFromEnv } from 'emaily-fi';
-
 // Initialize with built-in features
 const notifier = new EmailNotifier(createValidatedConfigFromEnv({
   rateLimit: { maxPerSecond: 1 },
@@ -265,8 +237,8 @@ console.log(\`Sent: \${bulkResult.totalSent}, Failed: \${bulkResult.totalFailed}
               </div>
 
               {/* Step-by-step Migration */}
-              <div className="bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">
                   Step-by-Step Migration
                 </h3>
 
@@ -276,7 +248,7 @@ console.log(\`Sent: \${bulkResult.totalSent}, Failed: \${bulkResult.totalFailed}
                       1
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                      <h4 className="font-semibold text-white">
                         Install emaily-fi
                       </h4>
                       <CodeBlock language="bash">
@@ -290,7 +262,7 @@ console.log(\`Sent: \${bulkResult.totalSent}, Failed: \${bulkResult.totalFailed}
                       2
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                      <h4 className="font-semibold text-white">
                         Replace Nodemailer imports
                       </h4>
                       <CodeBlock language="typescript">
@@ -308,7 +280,7 @@ import { EmailNotifier } from 'emaily-fi';`}
                       3
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                      <h4 className="font-semibold text-white">
                         Update configuration
                       </h4>
                       <CodeBlock language="typescript">
@@ -330,7 +302,7 @@ await notifier.initialize();`}
                       4
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                      <h4 className="font-semibold text-white">
                         Update email sending code
                       </h4>
                       <CodeBlock language="typescript">
@@ -352,10 +324,10 @@ const result = await notifier.sendToOne(
                       5
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                      <h4 className="font-semibold text-white">
                         Remove manual rate limiting and error handling
                       </h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
+                      <p className="text-gray-300 text-sm mb-2">
                         emaily-fi handles these automatically!
                       </p>
                       <CodeBlock language="typescript">
@@ -371,11 +343,11 @@ const bulkResult = await notifier.sendToAll(users, message);`}
               </div>
 
               {/* Migration Helper */}
-              <div className="bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-200 mb-4">
+              <div className="bg-gray-800 border border-blue-800 rounded-xl p-6">
+                <h3 className="text-xl font-semibold text-blue-200 mb-4">
                   🔧 Migration Helper Function
                 </h3>
-                <p className="text-blue-700 dark:text-blue-300 mb-4">
+                <p className="text-blue-300 mb-4">
                   Use this wrapper to gradually migrate your codebase:
                 </p>
 
@@ -438,7 +410,7 @@ export function createTransporter(config: any) {
         {/* SendGrid Migration */}
         {activeTab === "sendgrid" && (
           <div className="space-y-8">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-white">
               Migrating from SendGrid SDK
             </h2>
 
@@ -446,8 +418,8 @@ export function createTransporter(config: any) {
               {/* Before and After */}
               <div className="grid grid-cols-1 gap-6">
                 {/* Before */}
-                <div className="bg-gray-800 border border-red-200 dark:border-red-800 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">
+                <div className="bg-gray-800 border border-red-800 rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-red-200 mb-4">
                     Before (SendGrid SDK)
                   </h3>
 
@@ -495,8 +467,8 @@ async function sendBulkEmails(recipients: string[], subject: string, html: strin
                 </div>
 
                 {/* After */}
-                <div className="bg-gray-800 border border-green-200 dark:border-green-800 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">
+                <div className="bg-gray-800 border border-green-800 rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-green-200 mb-4">
                     After (emaily-fi with SendGrid)
                   </h3>
 
@@ -544,20 +516,20 @@ bulkResult.results.forEach(r => {
               </div>
 
               {/* Migration Steps */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">
                   SendGrid Migration Steps
                 </h3>
 
                 <div className="space-y-4">
-                  <div className="p-4 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+                  <div className="p-4 bg-yellow-900  border border-yellow-800 rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
                       <AlertTriangle className="text-yellow-600" size={16} />
-                      <span className="font-semibold text-yellow-800 dark:text-yellow-200">
+                      <span className="font-semibold text-yellow-200">
                         Keep Your SendGrid Account
                       </span>
                     </div>
-                    <p className="text-yellow-700 dark:text-yellow-300 text-sm">
+                    <p className="text-yellow-300 text-sm">
                       You can continue using SendGrid as the provider -
                       emaily-fi just provides a better interface!
                     </p>
@@ -569,7 +541,7 @@ bulkResult.results.forEach(r => {
                         1
                       </span>
                       <div className="flex-1">
-                        <p className="font-medium text-gray-900 dark:text-white">
+                        <p className="font-medium text-white">
                           Update dependencies
                         </p>
                         <CodeBlock language="bash">
@@ -584,7 +556,7 @@ npm install emaily-fi`}
                         2
                       </span>
                       <div className="flex-1">
-                        <p className="font-medium text-gray-900 dark:text-white">
+                        <p className="font-medium text-white">
                           Replace imports and initialization
                         </p>
                         <CodeBlock language="typescript">
@@ -611,7 +583,7 @@ await notifier.initialize();`}
                         3
                       </span>
                       <div className="flex-1">
-                        <p className="font-medium text-gray-900 dark:text-white">
+                        <p className="font-medium text-white">
                           Update email sending calls
                         </p>
                         <CodeBlock language="typescript">
@@ -637,25 +609,22 @@ const result = await notifier.sendToOne(
         {/* Mailgun Migration */}
         {activeTab === "mailgun" && (
           <div className="space-y-8">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-white">
               Migrating from Mailgun
             </h2>
 
-            <div className="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6">
+            <div className="bg-opacity-20 border border-yellow-800 rounded-xl p-6">
               <div className="flex items-start space-x-3">
-                <AlertTriangle
-                  className="text-yellow-600 dark:text-yellow-400 mt-0.5"
-                  size={20}
-                />
+                <AlertTriangle className="text-yellow-400 mt-0.5" size={20} />
                 <div>
-                  <h3 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+                  <h3 className="font-semibold text-yellow-200 mb-2">
                     Mailgun Provider Coming Soon
                   </h3>
-                  <p className="text-yellow-700 dark:text-yellow-300 mb-4">
+                  <p className="text-yellow-300 mb-4">
                     Native Mailgun support is planned for v1.2.0. For now, you
                     can:
                   </p>
-                  <ul className="space-y-2 text-yellow-700 dark:text-yellow-300">
+                  <ul className="space-y-2 text-yellow-300">
                     <li>• Migrate to Gmail SMTP (easier setup)</li>
                     <li>• Use SendGrid as an alternative</li>
                     <li>
@@ -667,8 +636,8 @@ const result = await notifier.sendToOne(
             </div>
 
             {/* SMTP Configuration for Mailgun */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Use Mailgun via SMTP (Interim Solution)
               </h3>
 
@@ -707,21 +676,18 @@ const result = await notifier.sendToOne(
         {/* AWS SES Migration */}
         {activeTab === "ses" && (
           <div className="space-y-8">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-white">
               Migrating from AWS SES
             </h2>
 
-            <div className="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6">
+            <div className="bg-opacity-20 border border-yellow-800 rounded-xl p-6">
               <div className="flex items-start space-x-3">
-                <AlertTriangle
-                  className="text-yellow-600 dark:text-yellow-400 mt-0.5"
-                  size={20}
-                />
+                <AlertTriangle className="text-yellow-400 mt-0.5" size={20} />
                 <div>
-                  <h3 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+                  <h3 className="font-semibold text-yellow-200 mb-2">
                     AWS SES Provider Coming Soon
                   </h3>
-                  <p className="text-yellow-700 dark:text-yellow-300 mb-4">
+                  <p className="text-yellow-300 mb-4">
                     Native AWS SES support is planned for v1.2.0. For now, you
                     can use SES via SMTP:
                   </p>
@@ -730,8 +696,8 @@ const result = await notifier.sendToOne(
             </div>
 
             {/* SES SMTP Configuration */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Use AWS SES via SMTP
               </h3>
 
@@ -764,8 +730,8 @@ const result = await notifier.sendToOne(
 );`}
               </CodeBlock>
 
-              <div className="mt-4 p-4 bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-lg">
-                <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+              <div className="mt-4 p-4 bg-gray-800 border border-blue-800 rounded-lg">
+                <h4 className="font-semibold text-blue-200 mb-2">
                   SES SMTP Regions
                 </h4>
                 <CodeBlock language="typescript">
@@ -786,19 +752,19 @@ const sesEndpoints = {
 
       {/* General Migration Tips */}
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-3xl font-bold text-white">
           General Migration Tips
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
             <div className="flex items-center space-x-3 mb-4">
               <Code className="text-white" size={20} />
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-white">
                 Code Migration
               </h3>
             </div>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Start with a single email endpoint</li>
               <li>• Use migration helper functions</li>
               <li>• Test thoroughly in development</li>
@@ -807,14 +773,12 @@ const sesEndpoints = {
             </ul>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
             <div className="flex items-center space-x-3 mb-4">
               <CheckCircle className="text-green-500" size={20} />
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Testing
-              </h3>
+              <h3 className="text-lg font-semibold text-white">Testing</h3>
             </div>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Use test email addresses</li>
               <li>• Verify all email types work</li>
               <li>• Test rate limiting behavior</li>
@@ -823,14 +787,14 @@ const sesEndpoints = {
             </ul>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
             <div className="flex items-center space-x-3 mb-4">
               <AlertTriangle className="text-yellow-500" size={20} />
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-white">
                 Common Gotchas
               </h3>
             </div>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Update environment variables</li>
               <li>• Verify sender addresses are configured</li>
               <li>• Check rate limit configurations</li>
@@ -839,14 +803,12 @@ const sesEndpoints = {
             </ul>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
             <div className="flex items-center space-x-3 mb-4">
               <Package className="text-blue-500" size={20} />
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Deployment
-              </h3>
+              <h3 className="text-lg font-semibold text-white">Deployment</h3>
             </div>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Deploy to staging first</li>
               <li>• Monitor email delivery rates</li>
               <li>• Have rollback plan ready</li>
@@ -859,10 +821,10 @@ const sesEndpoints = {
 
       {/* Get Help */}
       <div className="bg-gray-800 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+        <h2 className="text-2xl font-bold text-white mb-4">
           Need Help with Migration?
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
+        <p className="text-gray-300 mb-6">
           Our community and maintainers are here to help with your migration.
           Don't hesitate to reach out!
         </p>
@@ -872,7 +834,7 @@ const sesEndpoints = {
             href="https://github.com/bittu-the-coder/emaily-fi/issues"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:border-primary hover:text-white transition-colors"
+            className="inline-flex items-center px-6 py-3 border-2 border-gray-600 text-gray-300 font-medium rounded-lg hover:border-primary hover:text-white transition-colors"
           >
             Report Migration Issues
           </a>

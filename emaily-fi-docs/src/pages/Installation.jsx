@@ -56,11 +56,11 @@ const Installation = () => {
           <span className="text-white font-medium">Installation Guide</span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">
           Install emaily-fi
         </h1>
 
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Get started with emaily-fi in seconds. Choose your preferred package
           manager and follow our step-by-step installation guide.
         </p>
@@ -68,15 +68,13 @@ const Installation = () => {
 
       {/* System Requirements */}
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          System Requirements
-        </h2>
+        <h2 className="text-3xl font-bold text-white">System Requirements</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {requirements.map((req, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700"
+              className="bg-gray-800 p-6 rounded-xl border border-gray-700"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center space-x-2">
@@ -88,26 +86,20 @@ const Installation = () => {
                     }`}
                     size={20}
                   />
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
-                    {req.name}
-                  </h3>
+                  <h3 className="font-semibold text-white">{req.name}</h3>
                 </div>
                 <span
                   className={`px-2 py-1 text-xs rounded-full ${
                     req.status === "required"
-                      ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                      : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                      ? "bg-green-900 text-green-200"
+                      : " bg-blue-900 text-blue-200"
                   }`}
                 >
                   {req.status}
                 </span>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
-                {req.description}
-              </p>
-              <p className="font-mono text-sm text-gray-500 dark:text-gray-400">
-                {req.version}
-              </p>
+              <p className="text-gray-300 text-sm mb-2">{req.description}</p>
+              <p className="font-mono text-sm text-gray-400">{req.version}</p>
             </div>
           ))}
         </div>
@@ -115,7 +107,7 @@ const Installation = () => {
 
       {/* Installation Methods */}
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-3xl font-bold text-white">
           Choose Your Package Manager
         </h2>
 
@@ -123,19 +115,17 @@ const Installation = () => {
           {installMethods.map((method, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary transition-colors"
+              className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-primary transition-colors"
             >
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-10 h-10 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center">
                   <Terminal className="text-white" size={20} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-lg font-semibold text-white">
                     {method.name}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    {method.description}
-                  </p>
+                  <p className="text-sm text-gray-300">{method.description}</p>
                 </div>
               </div>
               <CodeBlock language="bash">{method.command}</CodeBlock>
@@ -146,12 +136,10 @@ const Installation = () => {
 
       {/* Verification */}
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Verify Installation
-        </h2>
+        <h2 className="text-3xl font-bold text-white">Verify Installation</h2>
 
-        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
-          <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <div className="bg-gray-800 rounded-xl p-6">
+          <p className="text-gray-300 mb-4">
             After installation, verify that emaily-fi is properly installed by
             creating a simple test file:
           </p>
@@ -175,9 +163,7 @@ console.log(" Installation verified!");`}
           <div className="mt-4 p-4 bg-green-900 rounded-lg">
             <div className="flex items-center space-x-2">
               <CheckCircle className="text-green-600" size={16} />
-              <span className="text-green-800 dark:text-green-200 font-medium">
-                Run the test:
-              </span>
+              <span className="text-green-200 font-medium">Run the test:</span>
             </div>
             <CodeBlock language="bash" className="mt-2">
               node test-install.js
@@ -188,12 +174,12 @@ console.log(" Installation verified!");`}
 
       {/* Development Dependencies */}
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-3xl font-bold text-white">
           Development Dependencies
         </h2>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-          <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+          <p className="text-gray-300 mb-4">
             For TypeScript projects, you might want to install additional type
             definitions:
           </p>
@@ -213,10 +199,10 @@ npm install -D @types/nodemailer jest`}
 
       {/* Next Steps */}
       <div className="bg-gray-800 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+        <h2 className="text-2xl font-bold text-white mb-4">
           Installation Complete!
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
+        <p className="text-gray-300 mb-6">
           Great! You've successfully installed emaily-fi. Now you're ready to
           configure your email settings and send your first notification.
         </p>
@@ -231,7 +217,7 @@ npm install -D @types/nodemailer jest`}
           </a>
           <a
             href="/configuration"
-            className="inline-flex items-center px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:border-primary hover:text-white transition-colors"
+            className="inline-flex items-center px-6 py-3 border-2 border-gray-600 text-gray-300 font-medium rounded-lg hover:border-primary hover:text-white transition-colors"
           >
             Configuration Options
           </a>
@@ -240,16 +226,14 @@ npm install -D @types/nodemailer jest`}
 
       {/* Troubleshooting */}
       <div className="space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          Troubleshooting
-        </h2>
+        <h2 className="text-3xl font-bold text-white">Troubleshooting</h2>
 
         <div className="space-y-4">
-          <details className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-            <summary className="px-6 py-4 font-medium text-gray-900 dark:text-white cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
+          <details className="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+            <summary className="px-6 py-4 font-medium text-white cursor-pointer hover:hover:bg-gray-700">
               Installation fails with permission errors
             </summary>
-            <div className="px-6 pb-4 text-gray-600 dark:text-gray-300">
+            <div className="px-6 pb-4 text-gray-300">
               <p className="mb-2">
                 Try using sudo (Linux/Mac) or run as administrator (Windows):
               </p>
@@ -262,11 +246,11 @@ npm install -D @types/nodemailer jest`}
             </div>
           </details>
 
-          <details className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-            <summary className="px-6 py-4 font-medium text-gray-900 dark:text-white cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
+          <details className="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+            <summary className="px-6 py-4 font-medium text-white cursor-pointer hover:hover:bg-gray-700">
               Module not found after installation
             </summary>
-            <div className="px-6 pb-4 text-gray-600 dark:text-gray-300">
+            <div className="px-6 pb-4 text-gray-300">
               <p className="mb-2">Ensure you're importing correctly:</p>
               <CodeBlock language="typescript">
                 {`//  Correct
@@ -278,11 +262,11 @@ import EmailNotifier from "emaily-fi";`}
             </div>
           </details>
 
-          <details className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-            <summary className="px-6 py-4 font-medium text-gray-900 dark:text-white cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700">
+          <details className="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden">
+            <summary className="px-6 py-4 font-medium text-white cursor-pointer hover:hover:bg-gray-700">
               TypeScript compilation errors
             </summary>
-            <div className="px-6 pb-4 text-gray-600 dark:text-gray-300">
+            <div className="px-6 pb-4 text-gray-300">
               <p className="mb-2">Make sure your tsconfig.json includes:</p>
               <CodeBlock language="json">
                 {`{

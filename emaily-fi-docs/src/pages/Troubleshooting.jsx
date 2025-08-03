@@ -405,13 +405,13 @@ ENABLE_QUEUE=true`,
   const getSeverityBg = (severity) => {
     switch (severity) {
       case "error":
-        return "bg-gray-50 dark:bg-gray-900 dark:bg-opacity-20 border-red-200 dark:border-red-800";
+        return "bg-gray-900 border-red-800";
       case "warning":
-        return "bg-gray-50 dark:bg-gray-900 dark:bg-opacity-20 border-gray-200 dark:border-gray-800";
+        return "bg-gray-900  border-gray-800";
       case "info":
-        return "bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20 border-blue-200 dark:border-blue-800";
+        return "bg-blue-900 border-blue-800";
       default:
-        return "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700";
+        return "bg-gray-800 border-gray-700";
     }
   };
 
@@ -424,11 +424,11 @@ ENABLE_QUEUE=true`,
           <span className="text-white font-medium">Troubleshooting Guide</span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">
           Troubleshooting
         </h1>
 
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Common issues and solutions for emaily-fi. Find quick fixes for
           authentication, rate limiting, configuration, and performance
           problems.
@@ -448,7 +448,7 @@ ENABLE_QUEUE=true`,
             placeholder="Search troubleshooting guides..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="w-full pl-10 pr-4 py-3 border border-gray-600 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent"
           />
         </div>
 
@@ -461,7 +461,7 @@ ENABLE_QUEUE=true`,
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 activeCategory === category.id
                   ? "bg-primary text-white"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
+                  : "bg-gray-800 text-gray-400 hover:bg-gray-700"
               }`}
             >
               {category.name}
@@ -471,7 +471,7 @@ ENABLE_QUEUE=true`,
       </div>
 
       {/* Results Count */}
-      <div className="text-gray-600 dark:text-gray-400">
+      <div className="text-gray-400">
         Found {filteredItems.length} troubleshooting guide
         {filteredItems.length !== 1 ? "s" : ""}
         {searchTerm && ` for "${searchTerm}"`}
@@ -482,10 +482,10 @@ ENABLE_QUEUE=true`,
         {filteredItems.length === 0 ? (
           <div className="text-center py-12">
             <Search className="mx-auto text-gray-400 mb-4" size={48} />
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+            <h3 className="text-lg font-medium text-white mb-2">
               No results found
             </h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-400">
               Try different search terms or browse all categories
             </p>
           </div>
@@ -501,26 +501,19 @@ ENABLE_QUEUE=true`,
               <div className="flex items-start space-x-3 mb-4">
                 {getSeverityIcon(item.severity)}
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-white">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mt-1">
-                    {item.description}
-                  </p>
+                  <p className="text-gray-300 mt-1">{item.description}</p>
                 </div>
               </div>
 
               {/* Symptoms */}
               <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  🔍 Symptoms
-                </h4>
+                <h4 className="font-semibold text-white mb-2">🔍 Symptoms</h4>
                 <ul className="list-disc pl-5 space-y-1">
                   {item.symptoms.map((symptom, index) => (
-                    <li
-                      key={index}
-                      className="text-gray-600 dark:text-gray-300"
-                    >
+                    <li key={index} className="text-gray-300">
                       {symptom}
                     </li>
                   ))}
@@ -529,9 +522,7 @@ ENABLE_QUEUE=true`,
 
               {/* Solutions */}
               <div className="space-y-6">
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Solutions
-                </h4>
+                <h4 className="font-semibold text-white">Solutions</h4>
 
                 {item.solutions.map((solution, index) => (
                   <div key={index} className="space-y-3">
@@ -539,13 +530,13 @@ ENABLE_QUEUE=true`,
                       <div className="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
-                      <h5 className="font-medium text-gray-900 dark:text-white">
+                      <h5 className="font-medium text-white">
                         {solution.title}
                       </h5>
                     </div>
 
                     {solution.description && (
-                      <p className="text-gray-600 dark:text-gray-300 ml-8">
+                      <p className="text-gray-300 ml-8">
                         {solution.description}
                       </p>
                     )}
@@ -573,13 +564,13 @@ ENABLE_QUEUE=true`,
       </div>
 
       {/* Quick Diagnostic */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+      <div className="bg-gray-800 rounded-xl p-8 border border-gray-700">
+        <h2 className="text-2xl font-bold text-white mb-6">
           🔧 Quick Diagnostic
         </h2>
 
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-white">
             Run this diagnostic script to check your setup:
           </h3>
 
@@ -651,8 +642,8 @@ async function runDiagnostic() {
 runDiagnostic().catch(console.error);`}
           </CodeBlock>
 
-          <div className="mt-4 p-4 bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-lg">
-            <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+          <div className="mt-4 p-4 bg-gray-800 border border-blue-800 rounded-lg">
+            <h4 className="font-semibold text-blue-200 mb-2">
               How to run the diagnostic:
             </h4>
             <CodeBlock language="bash">
@@ -669,10 +660,8 @@ npx ts-node diagnostic.ts`}
 
       {/* Get More Help */}
       <div className="bg-gray-800 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          Still Need Help?
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
+        <h2 className="text-2xl font-bold text-white mb-4">Still Need Help?</h2>
+        <p className="text-gray-300 mb-6">
           If you couldn't find a solution here, our community and maintainers
           are ready to help.
         </p>
@@ -682,16 +671,14 @@ npx ts-node diagnostic.ts`}
             href="https://github.com/bittu-the-coder/emaily-fi/discussions"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary transition-colors"
+            className="flex items-center p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-primary transition-colors"
           >
-            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mr-3">
+            <div className="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center mr-3">
               <HelpCircle className="text-blue-600" size={20} />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white">
-                GitHub Discussions
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <h3 className="font-semibold text-white">GitHub Discussions</h3>
+              <p className="text-sm text-gray-300">
                 Ask questions and get community help
               </p>
             </div>
@@ -701,16 +688,14 @@ npx ts-node diagnostic.ts`}
             href="https://github.com/bittu-the-coder/emaily-fi/issues"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary transition-colors"
+            className="flex items-center p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-primary transition-colors"
           >
-            <div className="w-10 h-10 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center mr-3">
+            <div className="w-10 h-10 bg-red-900 rounded-lg flex items-center justify-center mr-3">
               <AlertTriangle className="text-red-600" size={20} />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white">
-                Report a Bug
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <h3 className="font-semibold text-white">Report a Bug</h3>
+              <p className="text-sm text-gray-300">
                 Found a bug? Let us know on GitHub
               </p>
             </div>
@@ -718,17 +703,14 @@ npx ts-node diagnostic.ts`}
         </div>
 
         <div className="mt-6 p-4 bg-gray-800 rounded-lg">
-          <h3 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+          <h3 className="font-semibold text-yellow-200 mb-2">
             💡 When asking for help, please include:
           </h3>
-          <ul className="space-y-1 text-yellow-700 dark:text-yellow-300 text-sm">
+          <ul className="space-y-1 text-yellow-300 text-sm">
             <li>• Your emaily-fi version (check package.json)</li>
             <li>
               • Node.js version (run{" "}
-              <code className="bg-gray-200 dark:bg-gray-800 px-1 rounded">
-                node --version
-              </code>
-              )
+              <code className="bg-gray-800 px-1 rounded">node --version</code>)
             </li>
             <li>• Complete error messages (not just "it doesn't work")</li>
             <li>• Your configuration (remove sensitive data)</li>

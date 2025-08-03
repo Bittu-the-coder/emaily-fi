@@ -29,11 +29,11 @@ const APIReference = () => {
           <span className="text-white font-medium">API Reference</span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">
           API Documentation
         </h1>
 
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Complete reference for all emaily-fi classes, methods, and types.
           Everything you need to integrate email notifications into your
           application.
@@ -41,7 +41,7 @@ const APIReference = () => {
       </div>
 
       {/* API Navigation */}
-      <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+      <div className="flex space-x-1 bg-gray-800 p-1 rounded-lg">
         {apiSections.map((section) => {
           const Icon = section.icon;
           return (
@@ -50,8 +50,8 @@ const APIReference = () => {
               onClick={() => setActiveSection(section.id)}
               className={`flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeSection === section.id
-                  ? "bg-white dark:bg-gray-700 text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                  ? "bg-gray-700 text-white shadow-sm"
+                  : "text-gray-400 hover:hover:text-gray-200"
               }`}
             >
               <Icon size={16} />
@@ -64,13 +64,11 @@ const APIReference = () => {
       {/* EmailNotifier Section */}
       {activeSection === "emailnotifier" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            EmailNotifier Class
-          </h2>
+          <h2 className="text-3xl font-bold text-white">EmailNotifier Class</h2>
 
           {/* Constructor */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Constructor
             </h3>
 
@@ -124,14 +122,14 @@ interface RetryOptions {
 }`}
             </CodeBlock>
 
-            <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
+            <div className="mt-4 p-4 bg-gray-700 border border-gray-600 rounded-lg">
+              <h4 className="font-semibold text-white mb-3">
                 Configuration Examples
               </h4>
 
               <div className="space-y-4">
                 <div>
-                  <h5 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">
+                  <h5 className="text-sm font-medium text-gray-200 mb-2">
                     Gmail OAuth2 (Recommended)
                   </h5>
                   <CodeBlock language="typescript">
@@ -150,7 +148,7 @@ interface RetryOptions {
                 </div>
 
                 <div>
-                  <h5 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">
+                  <h5 className="text-sm font-medium text-gray-200 mb-2">
                     SendGrid
                   </h5>
                   <CodeBlock language="typescript">
@@ -164,7 +162,7 @@ interface RetryOptions {
                 </div>
 
                 <div>
-                  <h5 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">
+                  <h5 className="text-sm font-medium text-gray-200 mb-2">
                     Gmail SMTP (Traditional)
                   </h5>
                   <CodeBlock language="typescript">
@@ -182,12 +180,12 @@ interface RetryOptions {
           </div>
 
           {/* Initialize Method */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               initialize()
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4">
               Initializes the email service and establishes SMTP connection.
             </p>
 
@@ -195,20 +193,16 @@ interface RetryOptions {
               {`async initialize(): Promise<void>`}
             </CodeBlock>
 
-            <div className="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
-              <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
-                Important
-              </h4>
-              <p className="text-yellow-700 dark:text-yellow-300">
+            <div className="mt-4 p-4 bg-yellow-900  border border-yellow-800 rounded-lg">
+              <h4 className="font-semibold text-yellow-200 mb-2">Important</h4>
+              <p className="text-yellow-300">
                 Must be called before sending any emails. This method verifies
                 the connection and configuration.
               </p>
             </div>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Example
-              </h4>
+              <h4 className="font-semibold text-white mb-2">Example</h4>
               <CodeBlock language="typescript">
                 {`const notifier = new EmailNotifier(config);
 await notifier.initialize();
@@ -224,17 +218,15 @@ const result = await notifier.sendToOne(user, message);`}
       {/* Send Methods Section */}
       {activeSection === "send-methods" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Send Methods
-          </h2>
+          <h2 className="text-3xl font-bold text-white">Send Methods</h2>
 
           {/* sendToOne */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               sendToOne()
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4">
               Sends an email to a single recipient.
             </p>
 
@@ -246,10 +238,8 @@ const result = await notifier.sendToOne(user, message);`}
             </CodeBlock>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Parameters
-              </h4>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+              <h4 className="font-semibold text-white mb-2">Parameters</h4>
+              <ul className="space-y-2 text-gray-300">
                 <li>
                   <code className="text-white">user</code> - Recipient user
                   object with name and email
@@ -262,9 +252,7 @@ const result = await notifier.sendToOne(user, message);`}
             </div>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Example
-              </h4>
+              <h4 className="font-semibold text-white mb-2">Example</h4>
               <CodeBlock language="typescript">
                 {`const result = await notifier.sendToOne(
   { name: "Alice", email: "alice@example.com" },
@@ -285,12 +273,12 @@ if (result.success) {
           </div>
 
           {/* sendToAll */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               sendToAll()
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4">
               Sends the same email to multiple recipients with rate limiting and
               retry logic.
             </p>
@@ -303,9 +291,7 @@ if (result.success) {
             </CodeBlock>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Example
-              </h4>
+              <h4 className="font-semibold text-white mb-2">Example</h4>
               <CodeBlock language="typescript">
                 {`const users = [
   { name: "Alice", email: "alice@example.com" },
@@ -331,12 +317,12 @@ result.results.forEach((r) => {
           </div>
 
           {/* sendRandom */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               sendRandom()
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4">
               Sends emails to a random subset of users. Perfect for A/B testing
               and sampling.
             </p>
@@ -350,9 +336,7 @@ result.results.forEach((r) => {
             </CodeBlock>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Example
-              </h4>
+              <h4 className="font-semibold text-white mb-2">Example</h4>
               <CodeBlock language="typescript">
                 {`// Send to 10 random users for A/B testing
 const result = await notifier.sendRandom(allUsers, testMessage, 10);
@@ -363,12 +347,12 @@ console.log(\`Test email sent to \${result.totalSent} random users\`);`}
           </div>
 
           {/* sendFiltered */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               sendFiltered()
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4">
               Sends emails to users that match a custom filter function. Great
               for targeted campaigns.
             </p>
@@ -382,9 +366,7 @@ console.log(\`Test email sent to \${result.totalSent} random users\`);`}
             </CodeBlock>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Examples
-              </h4>
+              <h4 className="font-semibold text-white mb-2">Examples</h4>
               <CodeBlock language="typescript">
                 {`// Send to premium users only
 const premiumResult = await notifier.sendFiltered(
@@ -412,13 +394,11 @@ const recentResult = await notifier.sendFiltered(
       {/* Types Section */}
       {activeSection === "types" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Types & Interfaces
-          </h2>
+          <h2 className="text-3xl font-bold text-white">Types & Interfaces</h2>
 
           {/* User Interface */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               User Interface
             </h3>
 
@@ -441,8 +421,8 @@ const user: User = {
           </div>
 
           {/* MessageInput Interface */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               MessageInput Interface
             </h3>
 
@@ -466,9 +446,7 @@ interface Attachment {
             </CodeBlock>
 
             <div className="mt-4">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Example
-              </h4>
+              <h4 className="font-semibold text-white mb-2">Example</h4>
               <CodeBlock language="typescript">
                 {`const message: MessageInput = {
   subject: "Order Confirmation",
@@ -488,8 +466,8 @@ interface Attachment {
           </div>
 
           {/* SendResult Interface */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               SendResult Interface
             </h3>
 
@@ -512,8 +490,8 @@ interface BatchSendResult {
           </div>
 
           {/* Config Interface */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Config Interface
             </h3>
 
@@ -572,26 +550,24 @@ type LogLevel = "debug" | "info" | "warn" | "error";`}
       {/* Utilities Section */}
       {activeSection === "utilities" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Utility Functions
-          </h2>
+          <h2 className="text-3xl font-bold text-white">Utility Functions</h2>
 
           {/* Gmail OAuth2 Helpers */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Gmail OAuth2 Helper Methods
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4">
               Static methods for setting up Gmail OAuth2 authentication:
             </p>
 
             <div className="space-y-6">
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   generateAuthUrl()
                 </h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-3">
+                <p className="text-gray-300 mb-3">
                   Generate an authorization URL for OAuth2 setup.
                 </p>
                 <CodeBlock language="typescript">
@@ -615,10 +591,10 @@ console.log("Visit this URL to authorize:", authUrl);
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <h4 className="text-lg font-semibold text-white mb-2">
                   getRefreshToken()
                 </h4>
-                <p className="text-gray-600 dark:text-gray-300 mb-3">
+                <p className="text-gray-300 mb-3">
                   Exchange authorization code for a refresh token.
                 </p>
                 <CodeBlock language="typescript">
@@ -641,8 +617,8 @@ console.log("Save this refresh token:", refreshToken);
                 </CodeBlock>
               </div>
 
-              <div className="p-4 bg-green-50 dark:bg-green-900 dark:bg-opacity-20 border border-green-200 dark:border-green-800 rounded-lg">
-                <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">
+              <div className="p-4 bg-green-900  border border-green-800 rounded-lg">
+                <h4 className="font-semibold text-green-200 mb-2">
                   💡 Complete OAuth2 Setup Flow
                 </h4>
                 <CodeBlock language="typescript">
@@ -672,8 +648,8 @@ const notifier = new EmailNotifier({
           </div>
 
           {/* Environment Configuration */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Environment Configuration
             </h3>
 
@@ -697,12 +673,12 @@ validateEnvConfig(); // Throws if required vars missing`}
           </div>
 
           {/* Validation Schemas */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Validation Schemas
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-300 mb-4">
               Export Zod schemas for custom validation:
             </p>
 
@@ -722,8 +698,8 @@ try {
           </div>
 
           {/* Queue Management */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Queue Management
             </h3>
 
@@ -748,44 +724,42 @@ const isPaused = notifier.isQueuePaused();`}
       {/* Error Handling Section */}
       {activeSection === "errors" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Error Handling
-          </h2>
+          <h2 className="text-3xl font-bold text-white">Error Handling</h2>
 
           {/* Error Types */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Common Error Types
             </h3>
 
             <div className="space-y-4">
-              <div className="p-4 bg-red-50 dark:bg-red-900 dark:bg-opacity-20 border border-red-200 dark:border-red-800 rounded-lg">
-                <h4 className="font-semibold text-red-800 dark:text-red-200 mb-2">
+              <div className="p-4 bg-red-900  border border-red-800 rounded-lg">
+                <h4 className="font-semibold text-red-200 mb-2">
                   Authentication Errors
                 </h4>
-                <ul className="text-red-700 dark:text-red-300 text-sm space-y-1">
+                <ul className="text-red-300 text-sm space-y-1">
                   <li>• Invalid email credentials</li>
                   <li>• App password not configured</li>
                   <li>• OAuth token expired</li>
                 </ul>
               </div>
 
-              <div className="p-4 bg-orange-50 dark:bg-orange-900 dark:bg-opacity-20 border border-orange-200 dark:border-orange-800 rounded-lg">
-                <h4 className="font-semibold text-orange-800 dark:text-orange-200 mb-2">
+              <div className="p-4 bg-orange-900  border border-orange-800 rounded-lg">
+                <h4 className="font-semibold text-orange-200 mb-2">
                   Rate Limit Errors
                 </h4>
-                <ul className="text-orange-700 dark:text-orange-300 text-sm space-y-1">
+                <ul className="text-orange-300 text-sm space-y-1">
                   <li>• Too many emails sent per second/minute</li>
                   <li>• Provider temporary blocks</li>
                   <li>• Daily sending quota exceeded</li>
                 </ul>
               </div>
 
-              <div className="p-4 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
-                <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+              <div className="p-4 bg-yellow-900  border border-yellow-800 rounded-lg">
+                <h4 className="font-semibold text-yellow-200 mb-2">
                   Validation Errors
                 </h4>
-                <ul className="text-yellow-700 dark:text-yellow-300 text-sm space-y-1">
+                <ul className="text-yellow-300 text-sm space-y-1">
                   <li>• Invalid email addresses</li>
                   <li>• Missing required fields</li>
                   <li>• Invalid attachment formats</li>
@@ -795,8 +769,8 @@ const isPaused = notifier.isQueuePaused();`}
           </div>
 
           {/* Error Handling Patterns */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Error Handling Patterns
             </h3>
 
@@ -842,8 +816,8 @@ failures.forEach(failure => {
           </div>
 
           {/* Custom Error Logging */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-semibold text-white mb-4">
               Custom Error Logging
             </h3>
 
@@ -871,16 +845,12 @@ failures.forEach(failure => {
 
       {/* Quick Reference */}
       <div className="bg-gray-800 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          Quick Reference
-        </h2>
+        <h2 className="text-2xl font-bold text-white mb-6">Quick Reference</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-3">
-            <h3 className="font-semibold text-gray-900 dark:text-white">
-              Essential Methods
-            </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <h3 className="font-semibold text-white">Essential Methods</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>
                 <code className="text-white">new EmailNotifier(config)</code> -
                 Create instance
@@ -901,10 +871,8 @@ failures.forEach(failure => {
           </div>
 
           <div className="space-y-3">
-            <h3 className="font-semibold text-gray-900 dark:text-white">
-              Key Imports
-            </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <h3 className="font-semibold text-white">Key Imports</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>
                 <code className="text-white">{`import { EmailNotifier } from "emaily-fi"`}</code>
               </li>

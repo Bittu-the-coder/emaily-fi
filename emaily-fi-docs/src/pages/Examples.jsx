@@ -29,11 +29,11 @@ const Examples = () => {
           <span className="text-white font-medium">Real-World Examples</span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">
           Example Applications
         </h1>
 
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Learn from real-world examples and implementation patterns. Copy,
           paste, and customize these code samples for your own projects.
         </p>
@@ -50,7 +50,7 @@ const Examples = () => {
               className={`flex flex-col items-center space-y-2 p-4 rounded-lg text-sm font-medium transition-colors ${
                 activeExample === example.id
                   ? "bg-primary text-white shadow-button"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
+                  : "bg-gray-800 text-gray-400 hover:bg-gray-700"
               }`}
             >
               <Icon size={20} />
@@ -63,14 +63,12 @@ const Examples = () => {
       {/* Newsletter System Example */}
       {activeExample === "newsletter" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Newsletter System
-          </h2>
+          <h2 className="text-3xl font-bold text-white">Newsletter System</h2>
 
           <div className="space-y-6">
             {/* Complete Newsletter Service */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Complete Newsletter Service
               </h3>
 
@@ -236,8 +234,8 @@ interface Campaign {
             </div>
 
             {/* Usage Example */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Usage Example
               </h3>
 
@@ -295,14 +293,14 @@ main().catch(console.error);`}
       {/* E-commerce Example */}
       {activeExample === "ecommerce" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-bold text-white">
             E-commerce Notifications
           </h2>
 
           <div className="space-y-6">
             {/* Order Service */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Order Notification Service
               </h3>
 
@@ -567,13 +565,13 @@ interface Product {
       {/* User Authentication Example */}
       {activeExample === "user-auth" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-bold text-white">
             User Authentication Emails
           </h2>
 
           <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Authentication Service
               </h3>
 
@@ -811,13 +809,13 @@ interface LoginInfo {
       {/* Express.js Integration Example */}
       {activeExample === "express" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-bold text-white">
             Express.js Integration
           </h2>
 
           <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Express Server with Email Integration
               </h3>
 
@@ -1057,14 +1055,14 @@ app.listen(PORT, () => {
       {/* Testing Example */}
       {activeExample === "testing" && (
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-bold text-white">
             Testing & Development
           </h2>
 
           <div className="space-y-6">
             {/* Mock Service */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Mock Email Service for Testing
               </h3>
 
@@ -1209,8 +1207,8 @@ export function createEmailServiceForEnv(): MockEmailService | EmailNotifier {
             </div>
 
             {/* Jest Tests */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Jest Testing Examples
               </h3>
 
@@ -1401,8 +1399,8 @@ describe("Email Service Integration", () => {
             </div>
 
             {/* Environment Configuration */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Environment-Based Configuration
               </h3>
 
@@ -1439,26 +1437,22 @@ ENABLE_QUEUE=true`}
 
       {/* Best Practices */}
       <div className="bg-gray-800 rounded-xl p-8">
-        <h2 className="text-2xl flex items-center font-bold text-gray-900 dark:text-white mb-6">
+        <h2 className="text-2xl flex items-center font-bold text-white mb-6">
           <Lightbulb className="mr-2 mb-1" size={20} /> Best Practices
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <h3 className="font-semibold text-gray-900 dark:text-white">
-              Security
-            </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <h3 className="font-semibold text-white">Security</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Use environment variables for credentials</li>
               <li>• Implement rate limiting on email endpoints</li>
               <li>• Validate and sanitize all input</li>
               <li>• Use app passwords instead of regular passwords</li>
             </ul>
 
-            <h3 className="font-semibold text-gray-900 dark:text-white">
-              Performance
-            </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <h3 className="font-semibold text-white">Performance</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Enable queue for bulk operations</li>
               <li>• Set appropriate rate limits</li>
               <li>• Use connection pooling</li>
@@ -1467,20 +1461,16 @@ ENABLE_QUEUE=true`}
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-semibold text-gray-900 dark:text-white">
-              Testing
-            </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <h3 className="font-semibold text-white">Testing</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Use mock services in tests</li>
               <li>• Test both success and failure scenarios</li>
               <li>• Validate email content and formatting</li>
               <li>• Use separate test email accounts</li>
             </ul>
 
-            <h3 className="font-semibold text-gray-900 dark:text-white">
-              Monitoring
-            </h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+            <h3 className="font-semibold text-white">Monitoring</h3>
+            <ul className="space-y-2 text-gray-300 text-sm">
               <li>• Log all email attempts and results</li>
               <li>• Track bounce rates and failures</li>
               <li>• Monitor queue performance</li>
